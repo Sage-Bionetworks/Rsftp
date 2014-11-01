@@ -50,6 +50,12 @@ void uxsel_init(void)
     fds = newtree234(uxsel_fd_cmp);
 }
 
+/*This is defined both in unix and windows so that the right 'init' is called based on the system's compilation */
+void init(void)
+{
+	uxsel_init();
+}
+
 /*
  * Here is the interface to fd-supplying modules. They supply an
  * fd, a set of read/write/execute states, and a callback function

@@ -7,29 +7,6 @@ int rssh_sftp_isdir(char *host, char *user, char *sftppath);
 void set_user_password(char *pass);
 void init();
 
-/* ------- temporary ------------- */
-int rssh_sftp_download(char *host, char *user, char *sftppath, char *localpath) {
-	return 0;
-}
-int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
-	return 0;
-}
-int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
-	return 0;
-}
-int rssh_sftp_rmdir(char *host, char *user, char *sftppath) {
-	return 0;
-}
-int rssh_sftp_isdir(char *host, char *user, char *sftppath) {
-	return 0;
-}
-void set_user_password(char *pass) {
-	return;
-}
-void init() {
-	return;
-}
-/* ------------------------------- */
 static int sftp_initialized = 0;
 
 /**

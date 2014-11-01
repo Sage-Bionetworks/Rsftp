@@ -9,6 +9,12 @@
 
 OSVERSIONINFO osVersion;
 
+/*This is defined both in unix and windows so that the right 'init' is called based on the system's compilation */
+void init(void)
+{
+	/* nothing to do */
+}
+
 char *platform_get_x_display(void) {
     /* We may as well check for DISPLAY in case it's useful. */
     return dupstr(getenv("DISPLAY"));

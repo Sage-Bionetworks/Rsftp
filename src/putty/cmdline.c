@@ -58,6 +58,11 @@ static void cmdline_save_param(char *p, char *value, int pri)
 
 static char *cmdline_password = NULL;
 
+void set_user_password(char *pass) {
+	cmdline_password = snewn(strlen(pass)+1, char);
+    strcpy(cmdline_password, pass);
+}
+
 void cmdline_cleanup(void)
 {
     int pri;

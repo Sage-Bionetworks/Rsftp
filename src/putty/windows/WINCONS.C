@@ -124,6 +124,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
     }
     if (ret == 1) {		       /* key was absent */
 	if (console_batch_mode) {
+		return 1; /* TODO handle case of missing key correctly */
 	    fprintf(stderr, absentmsg_batch, keytype, fingerprint);
             return 0;
 	}
