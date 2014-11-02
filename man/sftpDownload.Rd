@@ -16,18 +16,14 @@ Downloads a file from an ftp server.  Will overwrite an existing file at the spe
 logical:  returns TRUE if successful, FALSE otherwise
 }
 \references{
-www.libssh2.org
+http://www.chiark.greenend.org.uk/~sgtatham/putty/
 }
 \author{
 Bruce Hoff <bruce.hoff@sagebase.org>
 }
-\note{
-The underlying C code supports public key authentication but this version of Rssh2 supports only username+password authentication.
-}
 
 \seealso{
 sftpUpload
-sftpDownload
 sftpDirectoryExists
 sftpMakeDirectory
 sftpRemoveDirectory

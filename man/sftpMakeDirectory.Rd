@@ -1,40 +1,36 @@
-\name{sftpDownload}
-\alias{sftpDownload}
+\name{sftpMakeDirectory}
+\alias{sftpMakeDirectory}
 \title{
-sftpDownload
+sftpMakeDirectory
 }
 \description{
-Downloads a file from an ftp server.
+Creates a new directory on a remote ftp server.
 }
 \usage{
-sftpDownload(host, username, password, remotepath, localpath)
+sftpMakeDirectory(host, username, password, remotepath)
 }
 \details{
-Downloads a file from an ftp server.  Will overwrite an existing file at the specified 'localpath'.
+Creates a new directory on a remote ftp server.
 }
 \value{
 logical:  returns TRUE if successful, FALSE otherwise
 }
 \references{
-www.libssh2.org
+http://www.chiark.greenend.org.uk/~sgtatham/putty/
 }
 \author{
 Bruce Hoff <bruce.hoff@sagebase.org>
-}
-\note{
-The underlying C code supports public key authentication but this version of Rssh2 supports only username+password authentication.
 }
 
 \seealso{
 sftpUpload
 sftpDownload
 sftpDirectoryExists
-sftpMakeDirectory
 sftpRemoveDirectory
 }
 \examples{
 \dontrun{
-sftpDownload("sftp.server.org", "username", "password", "/path/to/source/remotefile.txt", "/dest/location/localfile.txt")
+sftpMakeDirectory("sftp.server.org", "username", "password", "/path/on/server")
 }
 }
 

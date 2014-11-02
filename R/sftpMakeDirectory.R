@@ -12,7 +12,7 @@ sftpMakeDirectory<-function(host, username, password, remotepath) {
     as.character(password), 
     as.character(remotepath),  
     as.integer(0),
-    PACKAGE="Rssh2")
+    PACKAGE="Rssh")
   if (result[[5]]==0) return(TRUE) else return(FALSE)
 }
 

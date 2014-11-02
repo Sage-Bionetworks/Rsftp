@@ -1,28 +1,25 @@
-\name{sftpDownload}
-\alias{sftpDownload}
+\name{sftpRemoveDirectory}
+\alias{sftpRemoveDirectory}
 \title{
-sftpDownload
+sftpRemoveDirectory
 }
 \description{
-Downloads a file from an ftp server.
+Removes a directory from a remote ftp server.
 }
 \usage{
-sftpDownload(host, username, password, remotepath, localpath)
+sftpRemoveDirectory(host, username, password, remotepath)
 }
 \details{
-Downloads a file from an ftp server.  Will overwrite an existing file at the specified 'localpath'.
+Removes a directory from a remote ftp server.
 }
 \value{
 logical:  returns TRUE if successful, FALSE otherwise
 }
 \references{
-www.libssh2.org
+http://www.chiark.greenend.org.uk/~sgtatham/putty/
 }
 \author{
 Bruce Hoff <bruce.hoff@sagebase.org>
-}
-\note{
-The underlying C code supports public key authentication but this version of Rssh2 supports only username+password authentication.
 }
 
 \seealso{
@@ -30,11 +27,10 @@ sftpUpload
 sftpDownload
 sftpDirectoryExists
 sftpMakeDirectory
-sftpRemoveDirectory
 }
 \examples{
 \dontrun{
-sftpDownload("sftp.server.org", "username", "password", "/path/to/source/remotefile.txt", "/dest/location/localfile.txt")
+sftpDownload("sftp.server.org", "username", "password", "/path/on/server")
 }
 }
 

@@ -1,9 +1,9 @@
-Package: Rssh2
+Package: Rssh
 Type: Package
-Title: Rssh2
+Title: Rssh
 Version: 1.0
-Date: 2014-10-30
+Date: 2014-11-1
 Author: Bruce Hoff <bruce.hoff@sagebase.org>
 Maintainer: Bruce Hoff <bruce.hoff@sagebase.org>
-Description: An R wrapper for libssh2 (www.libssh2.org).  Version 1.0 supports sftp up- and down- load.  Future versions could support other features of libssh2, including scp and ssh2 access.  Extensions to the library may be submitted via pull requests to https://github.com/Sage-Bionetworks/Rssh2
-License: Apache version 2.0
+Description: A package for sftp file transfer.
+License:GPL

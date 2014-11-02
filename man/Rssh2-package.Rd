@@ -1,9 +1,9 @@
-\name{Rssh2-package}
-\alias{Rssh2-package}
-\alias{Rssh2}
+\name{Rssh-package}
+\alias{Rssh-package}
+\alias{Rssh}
 \docType{package}
 \title{
-Remote server access via sftp.  (Future versions could support ssh2, scp, which are implemented by the underlying library.)
+Remote server access via sftp.
 }
 \description{
 More about what it does (maybe more than one line)
@@ -11,11 +11,11 @@ More about what it does (maybe more than one line)
 }
 \details{
 \tabular{ll}{
-Package: \tab Rssh2\cr
+Package: \tab Rssh\cr
 Type: \tab Package\cr
 Version: \tab 1.0\cr
 Date: \tab 2014-11-1\cr
-License: \tab What license is it under?\cr
+License: \tab  GPL\cr
 }
 This library is a wrapper around PuTTY, using its source code according to the license terms specified here: http://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html
 

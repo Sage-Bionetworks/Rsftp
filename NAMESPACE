@@ -1,4 +1,4 @@
 exportPattern("^[[:alpha:]]+")
 
 ## package has a dynamic library
-useDynLib(Rssh2)
+useDynLib(Rssh)

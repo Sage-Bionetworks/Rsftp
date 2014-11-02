@@ -3,7 +3,7 @@
  */
 #include <Rdefines.h>
 #include <R_ext/Rdynload.h>
-#include "rssh2.h"
+#include "rssh.h"
 
 static const R_CallMethodDef callMethods[] = {
 	    {"sftp_download", (DL_FUNC) &sftp_download, 6},
@@ -15,13 +15,13 @@ static const R_CallMethodDef callMethods[] = {
 };
 
 void
-R_init_Rssh2(DllInfo *info)
+R_init_Rssh(DllInfo *info)
 {
     R_registerRoutines(info, NULL, callMethods, NULL, NULL);
 }
 
 void
-R_unload_ssh2(DllInfo *info)
+R_unload_Rssh(DllInfo *info)
 {
     /* any clean-up when package unloaded */
 }
