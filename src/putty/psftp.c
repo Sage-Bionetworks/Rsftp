@@ -3022,12 +3022,10 @@ int rssh_sftp_init(char *host, char *user) {
 	ret = psftp_connect(host, user, 22);
 
 	if (ret) {
-		printf("rssh_sftp_download: psftp_connect failed.\n");
 		return 1;
 	}
 
 	if (do_sftp_init()) {
-		printf("rssh_sftp_download: do_sftp_init failed.\n");
 		return 1;
 	}
 	return 0;
@@ -3056,8 +3054,7 @@ int rssh_sftp_download(char *host, char *user, char *sftppath, char *localpath) 
 	/* This function returns 1 for success, 0 for failure*/
 	ret = sftp_get_file(sftppath, localpath, 0, 0);
 
-	if (ret=0) {
-		printf("rssh_sftp_download: sftp_get_file failed.\n");
+	if (ret==0) {
 		return 1;
 	}
 
@@ -3074,8 +3071,7 @@ int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
 	/* This function returns 1 for success, 0 for failure*/
 	ret = sftp_put_file(localpath, sftppath, 0, 0);
 
-	if (ret=0) {
-		printf("rssh_sftp_upload: sftp_put_file failed.\n");
+	if (ret==0) {
 		return 1;
 	}
 
@@ -3096,8 +3092,28 @@ int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
 	cmd.nwords=2;
 	ret = sftp_cmd_mkdir(&cmd);
 
-	if (ret=0) {
-		printf("rssh_sftp_mkdir: sftp_cmd_mkdir failed.\n");
+	if (ret==0) {
+		return 1;
+	}
+
+	rssh_clean_up();
+
+	return 0;
+}
+
+int rssh_sftp_rm(char *host, char *user, char *sftppath) {
+	int ret;
+	ret = rssh_sftp_init(host, user);
+	if (ret!=0) return ret;
+
+	/* This function returns 1 for success, 0 for failure*/
+	struct sftp_command cmd;
+	cmd.words=snewn(2, char*);
+	cmd.words[1]=sftppath;
+	cmd.nwords=2;
+	ret = sftp_cmd_rm(&cmd);
+
+	if (ret==0) {
 		return 1;
 	}
 
@@ -3118,8 +3134,7 @@ int rssh_sftp_rmdir(char *host, char *user, char *sftppath) {
 	cmd.nwords=2;
 	ret = sftp_cmd_rmdir(&cmd);
 
-	if (ret=0) {
-		printf("rssh_sftp_mkdir: sftp_cmd_rmdir failed.\n");
+	if (ret==0) {
 		return 1;
 	}
 

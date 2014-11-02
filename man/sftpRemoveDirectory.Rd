@@ -27,6 +27,7 @@ sftpUpload
 sftpDownload
 sftpDirectoryExists
 sftpMakeDirectory
+sftpDeleteFile
 }
 \examples{
 \dontrun{

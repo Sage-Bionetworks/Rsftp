@@ -1,16 +1,16 @@
-\name{sftpMakeDirectory}
-\alias{sftpMakeDirectory}
+\name{sftpDeleteFile}
+\alias{sftpDeleteFile}
 \title{
-sftpMakeDirectory
+sftpDeleteFile
 }
 \description{
-Creates a new directory on a remote ftp server.
+Deletes a file from a remote ftp server.
 }
 \usage{
-sftpMakeDirectory(host, username, password, remotepath)
+sftpDeleteFile(host, username, password, remotepath)
 }
 \details{
-Creates a new directory on a remote ftp server.
+Deletes a file from a remote ftp server.
 }
 \value{
 logical:  returns TRUE if successful, FALSE otherwise
@@ -26,12 +26,12 @@ Bruce Hoff <bruce.hoff@sagebase.org>
 sftpUpload
 sftpDownload
 sftpDirectoryExists
+sftpMakeDirectory
 sftpRemoveDirectory
-sftpDeleteFile
 }
 \examples{
 \dontrun{
-sftpMakeDirectory("sftp.server.org", "username", "password", "/path/on/server")
+sftpDeleteFile("sftp.server.org", "username", "password", "/path/on/server/file.txt")
 }
 }
 
