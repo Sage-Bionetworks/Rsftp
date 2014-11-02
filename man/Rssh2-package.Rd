@@ -6,8 +6,9 @@
 Remote server access via sftp.
 }
 \description{
-More about what it does (maybe more than one line)
-~~ A concise (1-5 lines) description of the package ~~
+This package provides sftp access to remote servers.  Version 1.0 has just five commands, for uploading, downloading and 
+deleting files, and for creating and deleting directories.  The package wraps the source code for PuTTY.  As
+such it could be extended to provide additional ssh features.
 }
 \details{
 \tabular{ll}{
