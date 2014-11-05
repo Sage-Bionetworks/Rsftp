@@ -3082,12 +3082,13 @@ int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
 
 int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
 	int ret;
+	char *cmd_words[2];
 	ret = rssh_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
 	struct sftp_command cmd;
-	cmd.words=snewn(2, char*);
+	cmd.words=cmd_words;
 	cmd.words[1]=sftppath;
 	cmd.nwords=2;
 	ret = sftp_cmd_mkdir(&cmd);
@@ -3103,12 +3104,13 @@ int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
 
 int rssh_sftp_rm(char *host, char *user, char *sftppath) {
 	int ret;
+	char *cmd_words[2];
 	ret = rssh_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
 	struct sftp_command cmd;
-	cmd.words=snewn(2, char*);
+	cmd.words=cmd_words;
 	cmd.words[1]=sftppath;
 	cmd.nwords=2;
 	ret = sftp_cmd_rm(&cmd);
@@ -3124,12 +3126,13 @@ int rssh_sftp_rm(char *host, char *user, char *sftppath) {
 
 int rssh_sftp_rmdir(char *host, char *user, char *sftppath) {
 	int ret;
+	char *cmd_words[2];
 	ret = rssh_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
 	struct sftp_command cmd;
-	cmd.words=snewn(2, char*);
+	cmd.words=cmd_words;
 	cmd.words[1]=sftppath;
 	cmd.nwords=2;
 	ret = sftp_cmd_rmdir(&cmd);
