@@ -6,13 +6,12 @@
 
 sftpDirectoryExists<-function(host, username, password, remotepath) {
   resetState()
-  result<-.C("sftp_isdir", 
+  result<-.C(C_sftp_isdir,
     as.character(host), 
     as.character(username), 
     as.character(password), 
     as.character(remotepath),  
-    as.integer(0),
-    PACKAGE="Rssh")
+    as.integer(0))
   if (result[[5]]==1) return(TRUE) else return(FALSE)
 }
 
