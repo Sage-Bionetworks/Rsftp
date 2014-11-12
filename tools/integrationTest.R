@@ -8,6 +8,15 @@ library(tools)
 
 runIntegrationTest<-function(sftpHost, sftpUserName, sftpPassword) {
   message("\n===============\nBeginning Rssh integration test:\n===============\n")
+  # errors occurred with one round trip that were shaken out with multiple roundtrips
+  for (i in 1:10) {
+    runOnce(sftpHost, sftpUserName, sftpPassword)
+  }
+  
+  message("\n===============\nRssh integration test completed successfully.\n===============\n")
+}
+
+runOnce<-function(sftpHost, sftpUserName, sftpPassword) {
   
   filePath<- tempfile()
   connection<-file(filePath)
@@ -16,7 +25,7 @@ runIntegrationTest<-function(sftpHost, sftpUserName, sftpPassword) {
   close(connection)
   originalMD5<-tools::md5sum(filePath)
   
-  remoteDir<-sprintf("/public/rClientIntegrationTest/testdir%s", sample(100000, 1))
+  remoteDir<-sprintf("/rClientIntegrationTest/testdir%s", sample(100000, 1))
   
   dirExists<-sftpDirectoryExists(sftpHost, sftpUserName, sftpPassword, remoteDir)
   if (dirExists) stop(sprintf("Did not expect directory to exist %s", remoteDir))
@@ -46,7 +55,4 @@ runIntegrationTest<-function(sftpHost, sftpUserName, sftpPassword) {
   success<-sftpRemoveDirectory(sftpHost, sftpUserName, sftpPassword, remoteDir)
   if(!success) stop("Unable to delete remote directory")
   dirExists<-sftpDirectoryExists(sftpHost, sftpUserName, sftpPassword, remoteDir)
-  # TEMP if (dirExists) stop(sprintf("Failed to delete %s", remoteDir))
-  
-  message("\n===============\nRssh integration test completed successfully.\n===============\n")
 }
