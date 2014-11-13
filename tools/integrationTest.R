@@ -8,11 +8,7 @@ library(tools)
 
 runIntegrationTest<-function(sftpHost, sftpUserName, sftpPassword) {
   message("\n===============\nBeginning Rssh integration test:\n===============\n")
-  # errors occurred with one round trip that were shaken out with multiple roundtrips
-  for (i in 1:10) {
-    runOnce(sftpHost, sftpUserName, sftpPassword)
-  }
-  
+  runOnce(sftpHost, sftpUserName, sftpPassword)
   message("\n===============\nRssh integration test completed successfully.\n===============\n")
 }
 

@@ -6,13 +6,14 @@
 
 sftpUpload<-function(host, username, password, remotepath, localpath) {
   resetState()
-  result<-.C(C_sftp_upload,
+  result<-.C("sftp_upload",
     as.character(host), 
     as.character(username), 
     as.character(password), 
     as.character(remotepath), 
     as.character(localpath), 
-    as.integer(0))
+    as.integer(0),
+    PACKAGE="Rssh")
   if (result[[6]]==0) return(TRUE) else return(FALSE)
 }
 
