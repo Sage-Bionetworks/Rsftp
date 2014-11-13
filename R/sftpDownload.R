@@ -6,13 +6,14 @@
 
 sftpDownload<-function(host, username, password, remotepath, localpath) {
   resetState()
-  result<-.C(C_sftp_download,
+  result<-.C("sftp_download",
     as.character(host), 
     as.character(username), 
     as.character(password), 
     as.character(remotepath), 
     as.character(localpath), 
-    as.integer(0))
+    as.integer(0),
+    PACKAGE="Rssh")
   if (result[[6]]==0) return(TRUE) else return(FALSE)
 }
 

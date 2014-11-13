@@ -1,4 +1,4 @@
 exportPattern("sftp[[:alpha:]]+")
 
 ## package has a dynamic library
-useDynLib(Rssh, .registration=TRUE)
+useDynLib(Rssh)
