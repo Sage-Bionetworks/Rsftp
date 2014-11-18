@@ -1,7 +1,7 @@
 Package: Rssh
 Type: Package
 Title: Rssh
-Version: 1.0.1
+Version: 1.0-1
 Date: 2014-11-1
 Author: Bruce Hoff <bruce.hoff@sagebase.org>
 Maintainer: Bruce Hoff <bruce.hoff@sagebase.org>
