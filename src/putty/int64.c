@@ -139,36 +139,36 @@ int main(void)
     char buf[80];
 
     x = uint64_make(0x3456789AUL, 0xDEF01234UL);
-    printf("%08lx.%08lx\n", x.hi, x.lo);
+    Rprintf("%08lx.%08lx\n", x.hi, x.lo);
     uint64_decimal(x, buf);
-    printf("%s\n", buf);
+    Rprintf("%s\n", buf);
 
     y = uint64_add32(x, 0xFFFFFFFFU);
-    printf("%08lx.%08lx\n", y.hi, y.lo);
+    Rprintf("%08lx.%08lx\n", y.hi, y.lo);
     uint64_decimal(y, buf);
-    printf("%s\n", buf);
+    Rprintf("%s\n", buf);
 
     z = uint64_subtract(y, x);
-    printf("%08lx.%08lx\n", z.hi, z.lo);
+    Rprintf("%08lx.%08lx\n", z.hi, z.lo);
     uint64_decimal(z, buf);
-    printf("%s\n", buf);
+    Rprintf("%s\n", buf);
 
     z = uint64_subtract(x, y);
-    printf("%08lx.%08lx\n", z.hi, z.lo);
+    Rprintf("%08lx.%08lx\n", z.hi, z.lo);
     uint64_decimal(z, buf);
-    printf("%s\n", buf);
+    Rprintf("%s\n", buf);
 
     y = uint64_shift_right(x, 4);
-    printf("%08lx.%08lx\n", y.hi, y.lo);
+    Rprintf("%08lx.%08lx\n", y.hi, y.lo);
 
     y = uint64_shift_right(x, 36);
-    printf("%08lx.%08lx\n", y.hi, y.lo);
+    Rprintf("%08lx.%08lx\n", y.hi, y.lo);
 
     y = uint64_shift_left(x, 4);
-    printf("%08lx.%08lx\n", x.hi, x.lo);
+    Rprintf("%08lx.%08lx\n", x.hi, x.lo);
 
     y = uint64_shift_left(x, 36);
-    printf("%08lx.%08lx\n", x.hi, x.lo);
+    Rprintf("%08lx.%08lx\n", x.hi, x.lo);
 
     return 0;
 }

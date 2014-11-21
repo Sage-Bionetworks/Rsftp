@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <limits.h>
 #include <signal.h>
+#include "R_ext/Print.h"
 
 #include "putty.h"
 #include "tree234.h"
@@ -1199,10 +1200,7 @@ static int alloc_channel_id(Ssh ssh)
 
 static void c_write_stderr(int trusted, const char *buf, int len)
 {
-    int i;
-    for (i = 0; i < len; i++)
-	if (buf[i] != '\r' && (trusted || buf[i] == '\n' || (buf[i] & 0x60)))
-	    fputc(buf[i], stderr);
+    REprintf(buf);
 }
 
 static void c_write(Ssh ssh, const char *buf, int len)
@@ -3569,7 +3567,7 @@ static int do_ssh1_login(Ssh ssh, unsigned char *in, int inlen,
 
     logevent("Successfully started encryption");
 
-    fflush(stdout); /* FIXME eh? */
+    /*fflush(stdout);  FIXME eh? */
     {
 	if ((ssh->username = get_remote_username(ssh->conf)) == NULL) {
 	    int ret; /* need not be kept over crReturn */

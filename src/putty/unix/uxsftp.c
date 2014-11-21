@@ -21,6 +21,7 @@
 #include "ssh.h"
 #include "psftp.h"
 #include "int64.h"
+#include "R_ext/Print.h"
 
 /*
  * In PSFTP our selects are synchronous, so these functions are
@@ -137,7 +138,7 @@ RFile *open_existing_file(char *name, uint64 *size,
     if (size || mtime || atime || perms) {
 	struct stat statbuf;
 	if (fstat(fd, &statbuf) < 0) {
-	    fprintf(stderr, "%s: stat: %s\n", name, strerror(errno));
+	    REprintf("%s: stat: %s\n", name, strerror(errno));
 	    memset(&statbuf, 0, sizeof(statbuf));
 	}
 
@@ -208,7 +209,7 @@ WFile *open_existing_wfile(char *name, uint64 *size)
     if (size) {
 	struct stat statbuf;
 	if (fstat(fd, &statbuf) < 0) {
-	    fprintf(stderr, "%s: stat: %s\n", name, strerror(errno));
+	    REprintf("%s: stat: %s\n", name, strerror(errno));
 	    memset(&statbuf, 0, sizeof(statbuf));
 	}
 
@@ -304,7 +305,7 @@ int file_type(char *name)
 
     if (stat(name, &statbuf) < 0) {
 	if (errno != ENOENT)
-	    fprintf(stderr, "%s: stat: %s\n", name, strerror(errno));
+	    REprintf("%s: stat: %s\n", name, strerror(errno));
 	return FILE_TYPE_NONEXISTENT;
     }
 
@@ -516,7 +517,7 @@ static int ssh_sftp_do_select(int include_stdin, int no_fds_ok)
 
     if (ret < 0) {
 	perror("select");
-	exit(1);
+	{REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 
     for (i = 0; i < fdcount; i++) {
@@ -555,8 +556,8 @@ char *ssh_sftp_get_cmdline(char *prompt, int no_fds_ok)
     char *buf;
     int buflen, bufsize, ret;
 
-    fputs(prompt, stdout);
-    fflush(stdout);
+    Rprintf(prompt);
+    /*fflush(stdout);*/
 
     buf = NULL;
     buflen = bufsize = 0;
@@ -564,7 +565,7 @@ char *ssh_sftp_get_cmdline(char *prompt, int no_fds_ok)
     while (1) {
 	ret = ssh_sftp_do_select(TRUE, no_fds_ok);
 	if (ret < 0) {
-	    printf("connection died\n");
+	    Rprintf("connection died\n");
             sfree(buf);
 	    return NULL;	       /* woop woop */
 	}

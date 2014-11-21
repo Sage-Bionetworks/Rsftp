@@ -203,7 +203,7 @@ int main(void)
 
     crc32_init();
     for (i = 0; i < 256; i++) {
-	printf("%s0x%08XL%s",
+ Rprintf("%s0x%08XL%s",
 	       (i % 4 == 0 ? "    " : " "),
 	       crc32_table[i],
 	       (i % 4 == 3 ? (i == 255 ? "\n" : ",\n") : ","));

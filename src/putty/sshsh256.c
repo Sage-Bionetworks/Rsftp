@@ -5,6 +5,7 @@
  */
 
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 /* ----------------------------------------------------------------------
  * Core SHA256 algorithm: processes 16-word blocks into a message digest.
@@ -371,7 +372,7 @@ int main(void) {
 	}
     }
 
-    printf("%d errors\n", errors);
+    Rprintf("%d errors\n", errors);
 
     return 0;
 }

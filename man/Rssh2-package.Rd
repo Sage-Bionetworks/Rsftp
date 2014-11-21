@@ -6,16 +6,16 @@
 Remote server access via sftp.
 }
 \description{
-This package provides sftp access to remote servers.  Version 1.0 has just five commands, for uploading, downloading and 
-deleting files, and for creating and deleting directories.  The package wraps the source code for PuTTY.  As
+This package provides sftp access to remote servers.  Version 1.0 has just six commands, for uploading, downloading and 
+deleting files, and for creating, checking and deleting directories.  The package wraps the source code for PuTTY.  As
 such it could be extended to provide additional ssh features.
 }
 \details{
 \tabular{ll}{
 Package: \tab Rssh\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2014-11-1\cr
+Version: \tab 1.0-2\cr
+Date: \tab 2014-12-1\cr
 License: \tab  GPL\cr
 }
 This library is a wrapper around PuTTY, using its source code according to the license terms specified here: http://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html

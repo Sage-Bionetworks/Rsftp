@@ -1181,7 +1181,7 @@ void xfer_download_queue(struct fxp_xfer *xfer)
 	xfer->req_totalsize += rr->len;
 
 #ifdef DEBUG_DOWNLOAD
-	{ char buf[40]; uint64_decimal(rr->offset, buf); printf("queueing read request %p at %s\n", rr, buf); }
+	{ char buf[40]; uint64_decimal(rr->offset, buf); Rprintf("queueing read request %p at %s\n", rr, buf); }
 #endif
     }
 }
@@ -1215,14 +1215,14 @@ int xfer_download_gotpkt(struct fxp_xfer *xfer, struct sftp_packet *pktin)
     }
     rr->retlen = fxp_read_recv(pktin, rreq, rr->buffer, rr->len);
 #ifdef DEBUG_DOWNLOAD
-    printf("read request %p has returned [%d]\n", rr, rr->retlen);
+    Rprintf("read request %p has returned [%d]\n", rr, rr->retlen);
 #endif
 
     if ((rr->retlen < 0 && fxp_error_type()==SSH_FX_EOF) || rr->retlen == 0) {
 	xfer->eof = TRUE;
 	rr->complete = -1;
 #ifdef DEBUG_DOWNLOAD
-	printf("setting eof\n");
+ Rprintf("setting eof\n");
 #endif
     } else if (rr->retlen < 0) {
 	/* some error other than EOF; signal it back to caller */
@@ -1250,7 +1250,7 @@ int xfer_download_gotpkt(struct fxp_xfer *xfer, struct sftp_packet *pktin)
 #ifdef DEBUG_DOWNLOAD
 	{ char buf[40];
 	uint64_decimal(xfer->furthestdata, buf);
-	printf("setting furthestdata = %s\n", buf); }
+ Rprintf("setting furthestdata = %s\n", buf); }
 #endif
     }
 
@@ -1260,12 +1260,12 @@ int xfer_download_gotpkt(struct fxp_xfer *xfer, struct sftp_packet *pktin)
 #ifdef DEBUG_DOWNLOAD
 	{ char buf[40];
 	uint64_decimal(filesize, buf);
-	printf("short block! trying filesize = %s\n", buf); }
+ Rprintf("short block! trying filesize = %s\n", buf); }
 #endif
 	if (uint64_compare(xfer->filesize, filesize) > 0) {
 	    xfer->filesize = filesize;
 #ifdef DEBUG_DOWNLOAD
-	    printf("actually changing filesize\n");
+	    Rprintf("actually changing filesize\n");
 #endif	    
 	}
     }
@@ -1302,12 +1302,12 @@ int xfer_download_data(struct fxp_xfer *xfer, void **buf, int *len)
 	    retbuf = rr->buffer;
 	    retlen = rr->retlen;
 #ifdef DEBUG_DOWNLOAD
-	    printf("handing back data from read request %p\n", rr);
+	    Rprintf("handing back data from read request %p\n", rr);
 #endif
 	}
 #ifdef DEBUG_DOWNLOAD
 	else
-	    printf("skipping failed read request %p\n", rr);
+	    Rprintf("skipping failed read request %p\n", rr);
 #endif
 
 	xfer->head = xfer->head->next;
@@ -1379,7 +1379,7 @@ void xfer_upload_data(struct fxp_xfer *xfer, char *buffer, int len)
     xfer->req_totalsize += rr->len;
 
 #ifdef DEBUG_UPLOAD
-    { char buf[40]; uint64_decimal(rr->offset, buf); printf("queueing write request %p at %s [len %d]\n", rr, buf, len); }
+    { char buf[40]; uint64_decimal(rr->offset, buf); Rprintf("queueing write request %p at %s [len %d]\n", rr, buf, len); }
 #endif
 }
 
@@ -1403,7 +1403,7 @@ int xfer_upload_gotpkt(struct fxp_xfer *xfer, struct sftp_packet *pktin)
     }
     ret = fxp_write_recv(pktin, rreq);
 #ifdef DEBUG_UPLOAD
-    printf("write request %p has returned [%d]\n", rr, ret);
+    Rprintf("write request %p has returned [%d]\n", rr, ret);
 #endif
 
     /*

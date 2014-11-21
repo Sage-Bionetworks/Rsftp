@@ -72,23 +72,23 @@ static void random_stir(void)
 #ifdef RANDOM_DIAGNOSTICS
     {
         int p, q;
-        printf("random stir starting\npool:\n");
+        Rprintf("random stir starting\npool:\n");
         for (p = 0; p < POOLSIZE; p += HASHSIZE) {
-            printf("   ");
+            Rprintf("   ");
             for (q = 0; q < HASHSIZE; q += 4) {
-                printf(" %08x", *(word32 *)(pool.pool + p + q));            
+                Rprintf(" %08x", *(word32 *)(pool.pool + p + q));            
             }
-            printf("\n");
+            Rprintf("\n");
         }
-        printf("incoming:\n   ");
+        Rprintf("incoming:\n   ");
         for (q = 0; q < HASHSIZE; q += 4) {
-            printf(" %08x", *(word32 *)(pool.incoming + q));
+            Rprintf(" %08x", *(word32 *)(pool.incoming + q));
         }
-        printf("\nincomingb:\n   ");
+        Rprintf("\nincomingb:\n   ");
         for (q = 0; q < HASHINPUT; q += 4) {
-            printf(" %08x", *(word32 *)(pool.incomingb + q));
+            Rprintf(" %08x", *(word32 *)(pool.incomingb + q));
         }
-        printf("\n");
+        Rprintf("\n");
         random_diagnostics++;
     }
 #endif
@@ -148,23 +148,23 @@ static void random_stir(void)
 #ifdef RANDOM_DIAGNOSTICS
         if (i == 0) {
             int p, q;
-            printf("random stir midpoint\npool:\n");
+            Rprintf("random stir midpoint\npool:\n");
             for (p = 0; p < POOLSIZE; p += HASHSIZE) {
-                printf("   ");
+                Rprintf("   ");
                 for (q = 0; q < HASHSIZE; q += 4) {
-                    printf(" %08x", *(word32 *)(pool.pool + p + q));            
+                    Rprintf(" %08x", *(word32 *)(pool.pool + p + q));            
                 }
-                printf("\n");
+                Rprintf("\n");
             }
-            printf("incoming:\n   ");
+            Rprintf("incoming:\n   ");
             for (q = 0; q < HASHSIZE; q += 4) {
-                printf(" %08x", *(word32 *)(pool.incoming + q));
+                Rprintf(" %08x", *(word32 *)(pool.incoming + q));
             }
-            printf("\nincomingb:\n   ");
+            Rprintf("\nincomingb:\n   ");
             for (q = 0; q < HASHINPUT; q += 4) {
-                printf(" %08x", *(word32 *)(pool.incomingb + q));
+                Rprintf(" %08x", *(word32 *)(pool.incomingb + q));
             }
-            printf("\n");
+            Rprintf("\n");
         }
 #endif
     }
@@ -183,23 +183,23 @@ static void random_stir(void)
 #ifdef RANDOM_DIAGNOSTICS
     {
         int p, q;
-        printf("random stir done\npool:\n");
+        Rprintf("random stir done\npool:\n");
         for (p = 0; p < POOLSIZE; p += HASHSIZE) {
-            printf("   ");
+            Rprintf("   ");
             for (q = 0; q < HASHSIZE; q += 4) {
-                printf(" %08x", *(word32 *)(pool.pool + p + q));            
+                Rprintf(" %08x", *(word32 *)(pool.pool + p + q));            
             }
-            printf("\n");
+            Rprintf("\n");
         }
-        printf("incoming:\n   ");
+        Rprintf("incoming:\n   ");
         for (q = 0; q < HASHSIZE; q += 4) {
-            printf(" %08x", *(word32 *)(pool.incoming + q));
+            Rprintf(" %08x", *(word32 *)(pool.incoming + q));
         }
-        printf("\nincomingb:\n   ");
+        Rprintf("\nincomingb:\n   ");
         for (q = 0; q < HASHINPUT; q += 4) {
-            printf(" %08x", *(word32 *)(pool.incomingb + q));
+            Rprintf(" %08x", *(word32 *)(pool.incomingb + q));
         }
-        printf("\n");
+        Rprintf("\n");
         random_diagnostics--;
     }
 #endif

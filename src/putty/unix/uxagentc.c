@@ -119,7 +119,7 @@ int agent_query(void *in, int inlen, void **out, int *outlen,
     sock = socket(PF_UNIX, SOCK_STREAM, 0);
     if (sock < 0) {
 	perror("socket(PF_UNIX)");
-	exit(1);
+	{REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 
     cloexec(sock);

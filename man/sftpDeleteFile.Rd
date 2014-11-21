@@ -9,6 +9,20 @@ Deletes a file from a remote ftp server.
 \usage{
 sftpDeleteFile(host, username, password, remotepath)
 }
+\arguments{
+    \item{host}{
+    The name of the remote sftp host.
+    }
+    \item{username}{
+    The user name with which to log in to the remote sftp host.
+    }
+    \item{password}{
+    The password with which to log in to the remote sftp host.
+    }
+    \item{remotepath}{
+    The path to the file, including the file name itself.
+    }
+}
 \details{
 Deletes a file from a remote ftp server.
 }

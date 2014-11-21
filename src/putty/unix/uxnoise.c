@@ -15,6 +15,7 @@
 #include "putty.h"
 #include "ssh.h"
 #include "storage.h"
+#include "R_ext/Print.h"
 
 static int read_dev_urandom(char *buf, int len)
 {
@@ -65,9 +66,9 @@ void noise_get_heavy(void (*func) (void *, int))
 	    func(buf, ret);
 	pclose(fp);
     } else if (!got_dev_urandom) {
-	fprintf(stderr, "popen: %s\n"
+	REprintf("popen: %s\n"
 		"Unable to access fallback entropy source\n", strerror(errno));
-	exit(1);
+	{REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 
     fp = popen("ls -al /tmp 2>/dev/null", "r");
@@ -76,9 +77,9 @@ void noise_get_heavy(void (*func) (void *, int))
 	    func(buf, ret);
 	pclose(fp);
     } else if (!got_dev_urandom) {
-	fprintf(stderr, "popen: %s\n"
+	REprintf("popen: %s\n"
 		"Unable to access fallback entropy source\n", strerror(errno));
-	exit(1);
+	{REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 
     read_random_seed(func);

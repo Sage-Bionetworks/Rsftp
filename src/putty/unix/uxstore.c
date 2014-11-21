@@ -19,6 +19,7 @@
 #include "putty.h"
 #include "storage.h"
 #include "tree234.h"
+#include "R_ext/Print.h"
 
 #ifdef PATH_MAX
 #define FNLEN PATH_MAX
@@ -247,7 +248,7 @@ void provide_xrm_string(char *string)
 
     p = q = strchr(string, ':');
     if (!q) {
-	fprintf(stderr, "pterm: expected a colon in resource string"
+	REprintf("pterm: expected a colon in resource string"
 		" \"%s\"\n", string);
 	return;
     }

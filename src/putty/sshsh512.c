@@ -5,6 +5,7 @@
  */
 
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 #define BLKSIZE 128
 
@@ -350,7 +351,7 @@ int main(void) {
 
     }
 
-    printf("%d errors\n", errors);
+    Rprintf("%d errors\n", errors);
 
     return 0;
 }

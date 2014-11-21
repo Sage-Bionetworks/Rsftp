@@ -10,6 +10,7 @@
 #include "putty.h"
 #include "storage.h"
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 int console_batch_mode = FALSE;
 
@@ -30,7 +31,7 @@ void cleanup_exit(int code)
     crypto_wrapup();
 #endif
 
-    exit(code);
+    REprintf("PuTTY terminates here.\n");
 }
 
 void set_busy_status(void *frontend, int status)
@@ -116,20 +117,20 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
 
     if (ret == 2) {		       /* key was different */
 	if (console_batch_mode) {
-	    fprintf(stderr, wrongmsg_batch, keytype, fingerprint);
+	    REprintf(wrongmsg_batch, keytype, fingerprint);
             return 0;
 	}
-	fprintf(stderr, wrongmsg, keytype, fingerprint);
-	fflush(stderr);
+	REprintf(wrongmsg, keytype, fingerprint);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
     if (ret == 1) {		       /* key was absent */
 	if (console_batch_mode) {
 		return 1; /* TODO handle case of missing key correctly */
-	    fprintf(stderr, absentmsg_batch, keytype, fingerprint);
+	    REprintf(absentmsg_batch, keytype, fingerprint);
             return 0;
 	}
-	fprintf(stderr, absentmsg, keytype, fingerprint);
-	fflush(stderr);
+	REprintf(absentmsg, keytype, fingerprint);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
@@ -144,7 +145,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
 	    store_host_key(host, port, keytype, keystr);
         return 1;
     } else {
-	fprintf(stderr, abandoned);
+	REprintf(abandoned);
         return 0;
     }
 }
@@ -176,12 +177,12 @@ int askalg(void *frontend, const char *algtype, const char *algname,
     char line[32];
 
     if (console_batch_mode) {
-	fprintf(stderr, msg_batch, algtype, algname);
+	REprintf(msg_batch, algtype, algname);
 	return 0;
     }
 
-    fprintf(stderr, msg, algtype, algname);
-    fflush(stderr);
+    REprintf(msg, algtype, algname);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
     GetConsoleMode(hin, &savemode);
@@ -193,7 +194,7 @@ int askalg(void *frontend, const char *algtype, const char *algname,
     if (line[0] == 'y' || line[0] == 'Y') {
 	return 1;
     } else {
-	fprintf(stderr, abandoned);
+	REprintf(abandoned);
 	return 0;
     }
 }
@@ -224,12 +225,12 @@ int askappend(void *frontend, Filename *filename,
     char line[32];
 
     if (console_batch_mode) {
-	fprintf(stderr, msgtemplate_batch, FILENAME_MAX, filename->path);
-	fflush(stderr);
+	REprintf(msgtemplate_batch, FILENAME_MAX, filename->path);
+	/*fflush(stderr);* Not allowed in an R package*/
 	return 0;
     }
-    fprintf(stderr, msgtemplate, FILENAME_MAX, filename->path);
-    fflush(stderr);
+    REprintf(msgtemplate, FILENAME_MAX, filename->path);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
     GetConsoleMode(hin, &savemode);
@@ -330,7 +331,7 @@ int console_get_userpass_input(prompts_t *p, unsigned char *in, int inlen)
 	    return 0;
 	hin = GetStdHandle(STD_INPUT_HANDLE);
 	if (hin == INVALID_HANDLE_VALUE) {
-	    fprintf(stderr, "Cannot get standard input handle\n");
+	    REprintf("Cannot get standard input handle\n");
 	    cleanup_exit(1);
 	}
     }
@@ -341,7 +342,7 @@ int console_get_userpass_input(prompts_t *p, unsigned char *in, int inlen)
     if ((p->name_reqd && p->name) || p->instruction || p->n_prompts) {
 	hout = GetStdHandle(STD_OUTPUT_HANDLE);
 	if (hout == INVALID_HANDLE_VALUE) {
-	    fprintf(stderr, "Cannot get standard output handle\n");
+	    REprintf("Cannot get standard output handle\n");
 	    cleanup_exit(1);
 	}
     }

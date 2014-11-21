@@ -15,6 +15,7 @@
 #include "putty.h"
 #include "storage.h"
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 int console_batch_mode = FALSE;
 
@@ -55,7 +56,7 @@ void cleanup_exit(int code)
      */
     sk_cleanup();
     random_save_seed();
-    exit(code);
+    {REprintf("PuTTY terminates here.\n");return;}
 }
 
 void set_busy_status(void *frontend, int status)
@@ -141,20 +142,20 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
     premsg(&cf);
     if (ret == 2) {		       /* key was different */
 	if (console_batch_mode) {
-	    fprintf(stderr, wrongmsg_batch, keytype, fingerprint);
+	    REprintf(wrongmsg_batch, keytype, fingerprint);
 	    return 0;
 	}
-	fprintf(stderr, wrongmsg, keytype, fingerprint);
-	fflush(stderr);
+	REprintf(wrongmsg, keytype, fingerprint);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
     if (ret == 1) {		       /* key was absent */
 	if (console_batch_mode) {
 		return 1; /* TODO handle case of missing key correctly */
-		fprintf(stderr, absentmsg_batch, keytype, fingerprint);
+		REprintf(absentmsg_batch, keytype, fingerprint);
 	    return 0;
 	}
-	fprintf(stderr, absentmsg, keytype, fingerprint);
-	fflush(stderr);
+	REprintf(absentmsg, keytype, fingerprint);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
 
     {
@@ -175,7 +176,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
 	postmsg(&cf);
         return 1;
     } else {
-	fprintf(stderr, abandoned);
+	REprintf(abandoned);
 	postmsg(&cf);
         return 0;
     }
@@ -203,12 +204,12 @@ int askalg(void *frontend, const char *algtype, const char *algname,
 
     premsg(&cf);
     if (console_batch_mode) {
-	fprintf(stderr, msg_batch, algtype, algname);
+	REprintf(msg_batch, algtype, algname);
 	return 0;
     }
 
-    fprintf(stderr, msg, algtype, algname);
-    fflush(stderr);
+    REprintf(msg, algtype, algname);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     {
 	struct termios oldmode, newmode;
@@ -226,7 +227,7 @@ int askalg(void *frontend, const char *algtype, const char *algname,
 	postmsg(&cf);
 	return 1;
     } else {
-	fprintf(stderr, abandoned);
+	REprintf(abandoned);
 	postmsg(&cf);
 	return 0;
     }
@@ -257,12 +258,12 @@ int askappend(void *frontend, Filename *filename,
 
     premsg(&cf);
     if (console_batch_mode) {
-	fprintf(stderr, msgtemplate_batch, FILENAME_MAX, filename->path);
-	fflush(stderr);
+	REprintf(msgtemplate_batch, FILENAME_MAX, filename->path);
+	/*fflush(stderr);* Not allowed in an R package*/
 	return 0;
     }
-    fprintf(stderr, msgtemplate, FILENAME_MAX, filename->path);
-    fflush(stderr);
+    REprintf(msgtemplate, FILENAME_MAX, filename->path);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     {
 	struct termios oldmode, newmode;
@@ -310,7 +311,7 @@ void old_keyfile_warning(void)
 
     struct termios cf;
     premsg(&cf);
-    fputs(message, stderr);
+    REprintf(message);
     postmsg(&cf);
 }
 
@@ -346,12 +347,12 @@ static void console_open(FILE **outfp, int *infd)
         *outfp = fdopen(*infd, "w");
     } else {
         *infd = 0;
-        *outfp = stderr;
+        /**outfp = stderr; Not allowed in an R pacakge*/
     }
 }
 static void console_close(FILE *outfp, int infd)
 {
-    if (outfp != stderr)
+    /*if (outfp != stderr)*/
         fclose(outfp);             /* will automatically close infd too */
 }
 

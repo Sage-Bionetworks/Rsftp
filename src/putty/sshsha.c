@@ -33,12 +33,12 @@ void SHATransform(word32 * digest, word32 * block)
         extern int random_diagnostics;
         if (random_diagnostics) {
             int i;
-            printf("SHATransform:");
+            Rprintf("SHATransform:");
             for (i = 0; i < 5; i++)
-                printf(" %08x", digest[i]);
-            printf(" +");
+                Rprintf(" %08x", digest[i]);
+            Rprintf(" +");
             for (i = 0; i < 16; i++)
-                printf(" %08x", block[i]);
+                Rprintf(" %08x", block[i]);
         }
     }
 #endif
@@ -104,10 +104,10 @@ void SHATransform(word32 * digest, word32 * block)
         extern int random_diagnostics;
         if (random_diagnostics) {
             int i;
-            printf(" =");
+            Rprintf(" =");
             for (i = 0; i < 5; i++)
-                printf(" %08x", digest[i]);
-            printf("\n");
+                Rprintf(" %08x", digest[i]);
+            Rprintf("\n");
         }
     }
 #endif
