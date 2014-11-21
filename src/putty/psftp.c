@@ -657,8 +657,7 @@ int sftp_put_file(char *fname, char *outfname, int recurse, int restart)
     attrs.mtime=mtime;
     attrs.atime=atime;
     attrs.flags |= (SSH_FILEXFER_ATTR_SIZE | SSH_FILEXFER_ATTR_UIDGID | SSH_FILEXFER_ATTR_ACMODTIME);
-    Rprintf("In sftp_put_file: (%d) size: %d, mtime: %d, atime: %d, flags: %d\n",
-    		size, mtime, atime, attrs.flags);
+    /*Rprintf("In sftp_put_file: (%d) size: %d, mtime: %d, atime: %d, flags: %d\n", size, mtime, atime, attrs.flags); */
 
     if (restart) {
 	req = fxp_open_send(outfname, SSH_FXF_WRITE, &attrs);
