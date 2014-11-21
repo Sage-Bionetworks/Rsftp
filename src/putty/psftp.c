@@ -516,6 +516,9 @@ int sftp_put_file(char *fname, char *outfname, int recurse, int restart)
     RFile *file;
     int ret, err, eof;
     struct fxp_attrs attrs;
+    uint64 size;
+    unsigned long mtime;
+    unsigned long atime;
     long permissions;
 
     /*
@@ -641,13 +644,22 @@ int sftp_put_file(char *fname, char *outfname, int recurse, int restart)
 	return 1;
     }
 
-    file = open_existing_file(fname, NULL, NULL, NULL, &permissions);
+    file = open_existing_file(fname, &size, &mtime, &atime, &permissions);
     if (!file) {
     	Rprintf("local: unable to open %s\n", fname);
-	return 0;
+    	return 0;
     }
     attrs.flags = 0;
     PUT_PERMISSIONS(attrs, permissions);
+
+    /* This should copy the size, mtime and atime, but it doesn't seem to work. */
+    attrs.size=size;
+    attrs.mtime=mtime;
+    attrs.atime=atime;
+    attrs.flags |= (SSH_FILEXFER_ATTR_SIZE | SSH_FILEXFER_ATTR_UIDGID | SSH_FILEXFER_ATTR_ACMODTIME);
+    Rprintf("In sftp_put_file: (%d) size: %d, mtime: %d, atime: %d, flags: %d\n",
+    		size, mtime, atime, attrs.flags);
+
     if (restart) {
 	req = fxp_open_send(outfname, SSH_FXF_WRITE, &attrs);
     } else {
@@ -2850,7 +2862,7 @@ int psftp_connect(char *userhost, char *user, int portnumber)
 
 	while (!back->sendok(backhandle)) {
 		if (back->exitcode(backhandle) >= 0) {
-		 Rprintf("psftp_connect: back->exitcode(backhandle) >= 0\n");
+			Rprintf("Unable to connect. Check log-in credentials.\n");
 			return 1;
 		}
 		if (ssh_sftp_loop_iteration() < 0) {
