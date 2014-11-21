@@ -40,6 +40,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
+#include "R_ext/Print.h"
 
 #ifdef ZLIB_STANDALONE
 
@@ -1313,13 +1314,13 @@ int main(int argc, char **argv)
             else if (!strcmp(p, "--"))
                 opts = FALSE;          /* next thing is filename */
             else {
-                fprintf(stderr, "unknown command line option '%s'\n", p);
+                REprintf("unknown command line option '%s'\n", p);
                 return 1;
             }
         } else if (!filename) {
             filename = p;
         } else {
-            fprintf(stderr, "can only handle one filename\n");
+            REprintf("can only handle one filename\n");
             return 1;
         }
     }
@@ -1341,7 +1342,7 @@ int main(int argc, char **argv)
 
     if (!fp) {
         assert(filename);
-        fprintf(stderr, "unable to open '%s'\n", filename);
+        REprintf("unable to open '%s'\n", filename);
         return 1;
     }
 
@@ -1355,7 +1356,7 @@ int main(int argc, char **argv)
                 fwrite(outbuf, 1, outlen, stdout);
             sfree(outbuf);
         } else {
-            fprintf(stderr, "decoding error\n");
+            REprintf("decoding error\n");
             return 1;
         }
     }

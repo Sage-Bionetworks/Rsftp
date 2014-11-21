@@ -14,6 +14,7 @@
 #include <pwd.h>
 
 #include "putty.h"
+#include "R_ext/Print.h"
 
 unsigned long getticks(void)
 {
@@ -183,11 +184,11 @@ void cloexec(int fd) {
 
     fdflags = fcntl(fd, F_GETFD);
     if (fdflags < 0) {
-        fprintf(stderr, "%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
         exit(1);
     }
     if (fcntl(fd, F_SETFD, fdflags | FD_CLOEXEC) < 0) {
-        fprintf(stderr, "%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
         exit(1);
     }
 }
@@ -196,11 +197,11 @@ void noncloexec(int fd) {
 
     fdflags = fcntl(fd, F_GETFD);
     if (fdflags < 0) {
-        fprintf(stderr, "%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
         exit(1);
     }
     if (fcntl(fd, F_SETFD, fdflags & ~FD_CLOEXEC) < 0) {
-        fprintf(stderr, "%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
         exit(1);
     }
 }
@@ -209,11 +210,11 @@ int nonblock(int fd) {
 
     fdflags = fcntl(fd, F_GETFL);
     if (fdflags < 0) {
-        fprintf(stderr, "%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
         exit(1);
     }
     if (fcntl(fd, F_SETFL, fdflags | O_NONBLOCK) < 0) {
-        fprintf(stderr, "%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
         exit(1);
     }
 
@@ -224,11 +225,11 @@ int no_nonblock(int fd) {
 
     fdflags = fcntl(fd, F_GETFL);
     if (fdflags < 0) {
-        fprintf(stderr, "%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
         exit(1);
     }
     if (fcntl(fd, F_SETFL, fdflags & ~O_NONBLOCK) < 0) {
-        fprintf(stderr, "%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
+        REprintf("%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
         exit(1);
     }
 

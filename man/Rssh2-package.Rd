@@ -14,8 +14,8 @@ such it could be extended to provide additional ssh features.
 \tabular{ll}{
 Package: \tab Rssh\cr
 Type: \tab Package\cr
-Version: \tab 1.0-1\cr
-Date: \tab 2014-11-1\cr
+Version: \tab 1.0-2\cr
+Date: \tab 2014-12-1\cr
 License: \tab  GPL\cr
 }
 This library is a wrapper around PuTTY, using its source code according to the license terms specified here: http://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html

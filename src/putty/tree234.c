@@ -1014,6 +1014,7 @@ void *del234(tree234 * t, void *e)
  */
 
 #include <stdarg.h>
+#include "R_ext/Print.h"
 
 /*
  * Error reporting function.
@@ -1023,7 +1024,7 @@ void error(char *fmt, ...)
     va_list ap;
     printf("ERROR: ");
     va_start(ap, fmt);
-    vfprintf(stdout, fmt, ap);
+    Rprintf(fmt, ap);
     va_end(ap);
     printf("\n");
 }

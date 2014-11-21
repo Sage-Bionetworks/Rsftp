@@ -10,6 +10,7 @@
 #include <assert.h>
 
 #include "putty.h"
+#include "R_ext/Print.h"
 
 /* log session to file stuff ... */
 struct LogContext {
@@ -214,7 +215,7 @@ void log_eventlog(void *handle, const char *event)
 {
     struct LogContext *ctx = (struct LogContext *)handle;
     if ((flags & FLAG_STDERR) && (flags & FLAG_VERBOSE)) {
-	fprintf(stderr, "%s\n", event);
+	REprintf("%s\n", event);
 	fflush(stderr);
     }
     /* If we don't have a context yet (eg winnet.c init) then skip entirely */

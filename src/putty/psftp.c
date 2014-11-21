@@ -15,6 +15,7 @@
 #include "ssh.h"
 #include "sftp.h"
 #include "int64.h"
+#include "R_ext/Print.h"
 
 const char *const appname = "PSFTP";
 
@@ -2853,7 +2854,7 @@ int psftp_connect(char *userhost, char *user, int portnumber)
 		     &realhost, 0,
 		     conf_get_int(conf, CONF_tcp_keepalives));
     if (err != NULL) {
-	fprintf(stderr, "ssh_init: %s\n", err);
+	REprintf("ssh_init: %s\n", err);
 	return 1;
     }
 
@@ -2868,7 +2869,7 @@ int psftp_connect(char *userhost, char *user, int portnumber)
 			return 1;
 		}
 		if (ssh_sftp_loop_iteration() < 0) {
-			fprintf(stderr, "ssh_init: error during SSH connection setup\n");
+			REprintf("ssh_init: error during SSH connection setup\n");
 			return 1;
 		}
 	}
@@ -2883,11 +2884,11 @@ int psftp_connect(char *userhost, char *user, int portnumber)
 void cmdline_error(char *p, ...)
 {
     va_list ap;
-    fprintf(stderr, "psftp: ");
+    REprintf("psftp: ");
     va_start(ap, p);
-    vfprintf(stderr, p, ap);
+    REprintf(p, ap);
     va_end(ap);
-    fprintf(stderr, "\n       try typing \"psftp -h\" for help\n");
+    REprintf("\n       try typing \"psftp -h\" for help\n");
     exit(1);
 }
 

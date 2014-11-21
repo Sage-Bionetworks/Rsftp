@@ -5,6 +5,7 @@
  */
 
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 #define BLKSIZE 128
 

@@ -9,6 +9,7 @@
 #include <limits.h>
 
 #include "misc.h"
+#include "R_ext/Print.h"
 
 /*
  * Usage notes:
@@ -1815,9 +1816,9 @@ char *bignum_decimal(Bignum x)
 void modalfatalbox(char *p, ...)
 {
     va_list ap;
-    fprintf(stderr, "FATAL ERROR: ");
+    REprintf("FATAL ERROR: ");
     va_start(ap, p);
-    vfprintf(stderr, p, ap);
+    vREprintf(p, ap);
     va_end(ap);
     fputc('\n', stderr);
     exit(1);

@@ -8,6 +8,7 @@
 #include "psftp.h"
 #include "ssh.h"
 #include "int64.h"
+#include "R_ext/Print.h"
 
 char *get_ttymode(void *frontend, const char *mode) { return NULL; }
 
@@ -707,7 +708,7 @@ char *ssh_sftp_get_cmdline(char *prompt, int no_fds_ok)
 
     if (!CreateThread(NULL, 0, command_read_thread,
 		      ctx, 0, &threadid)) {
-	fprintf(stderr, "Unable to create command input thread\n");
+	REprintf("Unable to create command input thread\n");
 	cleanup_exit(1);
     }
 
