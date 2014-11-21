@@ -441,7 +441,7 @@ int main(void)
 	eret = fragment_tests[i].expected_result;
 	aret = wc_match_fragment(&f, &t);
 	if (aret != eret) {
-	    printf("failed test: /%s/ against /%s/ returned %d not %d\n",
+	    Rprintf("failed test: /%s/ against /%s/ returned %d not %d\n",
 		   fragment_tests[i].wildcard, fragment_tests[i].target,
 		   aret, eret);
 	    fails++;
@@ -457,7 +457,7 @@ int main(void)
 	eret = full_tests[i].expected_result;
 	aret = wc_match(f, t);
 	if (aret != eret) {
-	    printf("failed test: /%s/ against /%s/ returned %d not %d\n",
+	    Rprintf("failed test: /%s/ against /%s/ returned %d not %d\n",
 		   full_tests[i].wildcard, full_tests[i].target,
 		   aret, eret);
 	    fails++;
@@ -465,7 +465,7 @@ int main(void)
 	    passes++;
     }
 
-    printf("passed %d, failed %d\n", passes, fails);
+    Rprintf("passed %d, failed %d\n", passes, fails);
 
     return 0;
 }

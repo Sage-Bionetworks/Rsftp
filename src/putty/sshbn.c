@@ -127,8 +127,8 @@ static Bignum newbn(int length)
     assert(length >= 0 && length < INT_MAX / BIGNUM_INT_BITS);
 
     b = snewn(length + 1, BignumInt);
-    if (!b)
-	abort();		       /* FIXME */
+    /*if (!b)
+	abort();		        FIXME */
     memset(b, 0, (length + 1) * sizeof(*b));
     b[0] = length;
     return b;
@@ -143,8 +143,8 @@ void bn_restore_invariant(Bignum b)
 Bignum copybn(Bignum orig)
 {
     Bignum b = snewn(orig[0] + 1, BignumInt);
-    if (!b)
-	abort();		       /* FIXME */
+    /*if (!b)
+	abort();		        FIXME */
     memcpy(b, orig, (orig[0] + 1) * sizeof(*b));
     return b;
 }
@@ -280,38 +280,38 @@ static void internal_mul(const BignumInt *a, const BignumInt *b,
          */
 
 #ifdef KARA_DEBUG
-        printf("a1,a0 = 0x");
+        Rprintf("a1,a0 = 0x");
         for (i = 0; i < len; i++) {
-            if (i == toplen) printf(", 0x");
-            printf("%0*x", BIGNUM_INT_BITS/4, a[i]);
+            if (i == toplen) Rprintf(", 0x");
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, a[i]);
         }
-        printf("\n");
-        printf("b1,b0 = 0x");
+        Rprintf("\n");
+        Rprintf("b1,b0 = 0x");
         for (i = 0; i < len; i++) {
-            if (i == toplen) printf(", 0x");
-            printf("%0*x", BIGNUM_INT_BITS/4, b[i]);
+            if (i == toplen) Rprintf(", 0x");
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, b[i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /* a_1 b_1 */
         internal_mul(a, b, c, toplen, scratch);
 #ifdef KARA_DEBUG
-        printf("a1b1 = 0x");
+        Rprintf("a1b1 = 0x");
         for (i = 0; i < 2*toplen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, c[i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, c[i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /* a_0 b_0 */
         internal_mul(a + toplen, b + toplen, c + 2*toplen, botlen, scratch);
 #ifdef KARA_DEBUG
-        printf("a0b0 = 0x");
+        Rprintf("a0b0 = 0x");
         for (i = 0; i < 2*botlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, c[2*toplen+i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, c[2*toplen+i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /* Zero padding. midlen exceeds toplen by at most 2, so just
@@ -327,21 +327,21 @@ static void internal_mul(const BignumInt *a, const BignumInt *b,
         /* compute a_1 + a_0 */
         scratch[0] = internal_add(scratch+1, a+toplen, scratch+1, botlen);
 #ifdef KARA_DEBUG
-        printf("a1plusa0 = 0x");
+        Rprintf("a1plusa0 = 0x");
         for (i = 0; i < midlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, scratch[i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, scratch[i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
         /* compute b_1 + b_0 */
         scratch[midlen] = internal_add(scratch+midlen+1, b+toplen,
                                        scratch+midlen+1, botlen);
 #ifdef KARA_DEBUG
-        printf("b1plusb0 = 0x");
+        Rprintf("b1plusb0 = 0x");
         for (i = 0; i < midlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, scratch[midlen+i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, scratch[midlen+i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /*
@@ -350,11 +350,11 @@ static void internal_mul(const BignumInt *a, const BignumInt *b,
         internal_mul(scratch, scratch + midlen, scratch + 2*midlen, midlen,
                      scratch + 4*midlen);
 #ifdef KARA_DEBUG
-        printf("a1plusa0timesb1plusb0 = 0x");
+        Rprintf("a1plusa0timesb1plusb0 = 0x");
         for (i = 0; i < 2*midlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, scratch[2*midlen+i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, scratch[2*midlen+i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /*
@@ -368,21 +368,21 @@ static void internal_mul(const BignumInt *a, const BignumInt *b,
         scratch[1] = internal_add(scratch+2, c + 2*toplen,
                                   scratch+2, 2*botlen);
 #ifdef KARA_DEBUG
-        printf("a1b1plusa0b0 = 0x");
+        Rprintf("a1b1plusa0b0 = 0x");
         for (i = 0; i < 2*midlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, scratch[i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, scratch[i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         internal_sub(scratch + 2*midlen, scratch,
                      scratch + 2*midlen, 2*midlen);
 #ifdef KARA_DEBUG
-        printf("a1b0plusa0b1 = 0x");
+        Rprintf("a1b0plusa0b1 = 0x");
         for (i = 0; i < 2*midlen; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, scratch[2*midlen+i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, scratch[2*midlen+i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
         /*
@@ -403,11 +403,11 @@ static void internal_mul(const BignumInt *a, const BignumInt *b,
             i--;
         }
 #ifdef KARA_DEBUG
-        printf("ab = 0x");
+        Rprintf("ab = 0x");
         for (i = 0; i < 2*len; i++) {
-            printf("%0*x", BIGNUM_INT_BITS/4, c[i]);
+            Rprintf("%0*x", BIGNUM_INT_BITS/4, c[i]);
         }
-        printf("\n");
+        Rprintf("\n");
 #endif
 
     } else {
@@ -1286,9 +1286,9 @@ int bignum_bit(Bignum bn, int i)
  */
 void bignum_set_bit(Bignum bn, int bitnum, int value)
 {
-    if (bitnum < 0 || bitnum >= (int)(BIGNUM_INT_BITS * bn[0]))
-	abort();		       /* beyond the end */
-    else {
+	/*if (bitnum < 0 || bitnum >= (int)(BIGNUM_INT_BITS * bn[0]))
+	abort();		        beyond the end
+    else */{
 	int v = bitnum / BIGNUM_INT_BITS + 1;
 	int mask = 1 << (bitnum % BIGNUM_INT_BITS);
 	if (value)
@@ -1821,7 +1821,7 @@ void modalfatalbox(char *p, ...)
     vREprintf(p, ap);
     va_end(ap);
     fputc('\n', stderr);
-    exit(1);
+    {REprintf("PuTTY terminates here, with code 1.\n");return;}
 }
 
 #define fromxdigit(c) ( (c)>'9' ? ((c)&0xDF) - 'A' + 10 : (c) - '0' )
@@ -1881,8 +1881,8 @@ int main(int argc, char **argv)
             Bignum a, b, c, p;
 
             if (ptrnum != 3) {
-                printf("%d: mul with %d parameters, expected 3\n", line, ptrnum);
-                exit(1);
+                Rprintf("%d: mul with %d parameters, expected 3\n", line, ptrnum);
+                {REprintf("PuTTY terminates here, with code 1.\n");return;}
             }
             a = bignum_from_bytes(ptrs[0], ptrs[1]-ptrs[0]);
             b = bignum_from_bytes(ptrs[1], ptrs[2]-ptrs[1]);
@@ -1897,7 +1897,7 @@ int main(int argc, char **argv)
                 char *cs = bignum_decimal(c);
                 char *ps = bignum_decimal(p);
                 
-                printf("%d: fail: %s * %s gave %s expected %s\n",
+                Rprintf("%d: fail: %s * %s gave %s expected %s\n",
                        line, as, bs, ps, cs);
                 fails++;
 
@@ -1914,9 +1914,9 @@ int main(int argc, char **argv)
             Bignum a, b, m, c, p;
 
             if (ptrnum != 4) {
-                printf("%d: modmul with %d parameters, expected 4\n",
+                Rprintf("%d: modmul with %d parameters, expected 4\n",
                        line, ptrnum);
-                exit(1);
+                {REprintf("PuTTY terminates here, with code 1.\n");return;}
             }
             a = bignum_from_bytes(ptrs[0], ptrs[1]-ptrs[0]);
             b = bignum_from_bytes(ptrs[1], ptrs[2]-ptrs[1]);
@@ -1933,7 +1933,7 @@ int main(int argc, char **argv)
                 char *cs = bignum_decimal(c);
                 char *ps = bignum_decimal(p);
                 
-                printf("%d: fail: %s * %s mod %s gave %s expected %s\n",
+                Rprintf("%d: fail: %s * %s mod %s gave %s expected %s\n",
                        line, as, bs, ms, ps, cs);
                 fails++;
 
@@ -1952,8 +1952,8 @@ int main(int argc, char **argv)
             Bignum base, expt, modulus, expected, answer;
 
             if (ptrnum != 4) {
-                printf("%d: mul with %d parameters, expected 4\n", line, ptrnum);
-                exit(1);
+                Rprintf("%d: mul with %d parameters, expected 4\n", line, ptrnum);
+                {REprintf("PuTTY terminates here, with code 1.\n");return;}
             }
 
             base = bignum_from_bytes(ptrs[0], ptrs[1]-ptrs[0]);
@@ -1971,7 +1971,7 @@ int main(int argc, char **argv)
                 char *ds = bignum_decimal(answer);
                 char *ps = bignum_decimal(expected);
                 
-                printf("%d: fail: %s ^ %s mod %s gave %s expected %s\n",
+                Rprintf("%d: fail: %s ^ %s mod %s gave %s expected %s\n",
                        line, as, bs, cs, ds, ps);
                 fails++;
 
@@ -1987,15 +1987,15 @@ int main(int argc, char **argv)
             freebn(expected);
             freebn(answer);
         } else {
-            printf("%d: unrecognised test keyword: '%s'\n", line, buf);
-            exit(1);
+            Rprintf("%d: unrecognised test keyword: '%s'\n", line, buf);
+            {REprintf("PuTTY terminates here, with code 1.\n");return;}
         }
 
         sfree(buf);
         sfree(data);
     }
 
-    printf("passed %d failed %d total %d\n", passes, fails, passes+fails);
+    Rprintf("passed %d failed %d total %d\n", passes, fails, passes+fails);
     return fails != 0;
 }
 

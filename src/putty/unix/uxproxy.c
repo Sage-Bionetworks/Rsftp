@@ -310,7 +310,7 @@ Socket platform_new_connection(SockAddr addr, char *hostname,
 	noncloexec(0);
 	noncloexec(1);
 	execl("/bin/sh", "sh", "-c", cmd, (void *)NULL);
-	_exit(255);
+	{REprintf("PuTTY terminates here, with code 255.\n");return(255);}
     }
 
     sfree(cmd);

@@ -216,7 +216,7 @@ void log_eventlog(void *handle, const char *event)
     struct LogContext *ctx = (struct LogContext *)handle;
     if ((flags & FLAG_STDERR) && (flags & FLAG_VERBOSE)) {
 	REprintf("%s\n", event);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
     /* If we don't have a context yet (eg winnet.c init) then skip entirely */
     if (!ctx)

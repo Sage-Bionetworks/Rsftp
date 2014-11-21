@@ -158,7 +158,7 @@ char *get_username(void)
  */
 void pgp_fingerprints(void)
 {
-    fputs("These are the fingerprints of the PuTTY PGP Master Keys. They can\n"
+    Rprintf("These are the fingerprints of the PuTTY PGP Master Keys. They can\n"
 	  "be used to establish a trust path from this executable to another\n"
 	  "one. See the manual for more information.\n"
 	  "(Note: these fingerprints have nothing to do with SSH!)\n"
@@ -166,7 +166,7 @@ void pgp_fingerprints(void)
 	  "PuTTY Master Key (RSA), 1024-bit:\n"
 	  "  " PGP_RSA_MASTER_KEY_FP "\n"
 	  "PuTTY Master Key (DSA), 1024-bit:\n"
-	  "  " PGP_DSA_MASTER_KEY_FP "\n", stdout);
+	  "  " PGP_DSA_MASTER_KEY_FP "\n");
 }
 
 /*
@@ -185,11 +185,11 @@ void cloexec(int fd) {
     fdflags = fcntl(fd, F_GETFD);
     if (fdflags < 0) {
         REprintf("%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
     if (fcntl(fd, F_SETFD, fdflags | FD_CLOEXEC) < 0) {
         REprintf("%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 }
 void noncloexec(int fd) {
@@ -198,11 +198,11 @@ void noncloexec(int fd) {
     fdflags = fcntl(fd, F_GETFD);
     if (fdflags < 0) {
         REprintf("%d: fcntl(F_GETFD): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
     if (fcntl(fd, F_SETFD, fdflags & ~FD_CLOEXEC) < 0) {
         REprintf("%d: fcntl(F_SETFD): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 }
 int nonblock(int fd) {
@@ -211,11 +211,11 @@ int nonblock(int fd) {
     fdflags = fcntl(fd, F_GETFL);
     if (fdflags < 0) {
         REprintf("%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return(-1);}
     }
     if (fcntl(fd, F_SETFL, fdflags | O_NONBLOCK) < 0) {
         REprintf("%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return(-1);}
     }
 
     return fdflags & O_NONBLOCK;
@@ -226,11 +226,11 @@ int no_nonblock(int fd) {
     fdflags = fcntl(fd, F_GETFL);
     if (fdflags < 0) {
         REprintf("%d: fcntl(F_GETFL): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return(-1);}
     }
     if (fcntl(fd, F_SETFL, fdflags & ~O_NONBLOCK) < 0) {
         REprintf("%d: fcntl(F_SETFL): %s\n", fd, strerror(errno));
-        exit(1);
+        {REprintf("PuTTY terminates here, with code 1.\n");return(-1);}
     }
 
     return fdflags & O_NONBLOCK;

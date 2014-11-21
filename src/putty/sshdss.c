@@ -96,10 +96,10 @@ static void *dss_newkey(char *data, int len)
 #ifdef DEBUG_DSS
     {
 	int i;
-	printf("key:");
+ Rprintf("key:");
 	for (i = 0; i < len; i++)
-	    printf("  %02x", (unsigned char) (data[i]));
-	printf("\n");
+	    Rprintf("  %02x", (unsigned char) (data[i]));
+ Rprintf("\n");
     }
 #endif
 
@@ -242,10 +242,10 @@ static int dss_verifysig(void *key, char *sig, int siglen,
 #ifdef DEBUG_DSS
     {
 	int i;
-	printf("sig:");
+ Rprintf("sig:");
 	for (i = 0; i < siglen; i++)
-	    printf("  %02x", (unsigned char) (sig[i]));
-	printf("\n");
+	    Rprintf("  %02x", (unsigned char) (sig[i]));
+ Rprintf("\n");
     }
 #endif
     /*

@@ -1022,11 +1022,11 @@ void *del234(tree234 * t, void *e)
 void error(char *fmt, ...)
 {
     va_list ap;
-    printf("ERROR: ");
+    Rprintf("ERROR: ");
     va_start(ap, fmt);
     Rprintf(fmt, ap);
     va_end(ap);
-    printf("\n");
+    Rprintf("\n");
 }
 
 /* The array representation of the data. */
@@ -1171,7 +1171,7 @@ void verify(void)
 	    error("root->parent is %p should be null", tree->root->parent);
 	chknode(&ctx, 0, tree->root, NULL, NULL);
     }
-    printf("tree depth: %d\n", ctx.treedepth);
+    Rprintf("tree depth: %d\n", ctx.treedepth);
     /*
      * Enumerate the tree and ensure it matches up to the array.
      */
@@ -1391,7 +1391,7 @@ int findtest(void)
 		}
 	    }
 #if 0
-	    printf("find(\"%s\",%s) gave %s(%d)\n", p, relnames[j],
+	    Rprintf("find(\"%s\",%s) gave %s(%d)\n", p, relnames[j],
 		   realret, index);
 #endif
 	}
@@ -1432,13 +1432,13 @@ int main(void)
     for (i = 0; i < 10000; i++) {
 	j = randomnumber(&seed);
 	j %= NSTR;
-	printf("trial: %d\n", i);
+ Rprintf("trial: %d\n", i);
 	if (in[j]) {
-	    printf("deleting %s (%d)\n", strings[j], j);
+	    Rprintf("deleting %s (%d)\n", strings[j], j);
 	    deltest(strings[j]);
 	    in[j] = 0;
 	} else {
-	    printf("adding %s (%d)\n", strings[j], j);
+	    Rprintf("adding %s (%d)\n", strings[j], j);
 	    addtest(strings[j]);
 	    in[j] = 1;
 	}
@@ -1464,19 +1464,19 @@ int main(void)
     cmp = NULL;
     verify();
     for (i = 0; i < 1000; i++) {
-	printf("trial: %d\n", i);
+ Rprintf("trial: %d\n", i);
 	j = randomnumber(&seed);
 	j %= NSTR;
 	k = randomnumber(&seed);
 	k %= count234(tree) + 1;
-	printf("adding string %s at index %d\n", strings[j], k);
+ Rprintf("adding string %s at index %d\n", strings[j], k);
 	addpostest(strings[j], k);
     }
     while (count234(tree) > 0) {
-	printf("cleanup: tree size %d\n", count234(tree));
+ Rprintf("cleanup: tree size %d\n", count234(tree));
 	j = randomnumber(&seed);
 	j %= count234(tree);
-	printf("deleting string %s from index %d\n",
+ Rprintf("deleting string %s from index %d\n",
                (const char *)array[j], j);
 	delpostest(j);
     }

@@ -31,7 +31,7 @@ void cleanup_exit(int code)
     crypto_wrapup();
 #endif
 
-    exit(code);
+    REprintf("PuTTY terminates here.\n");
 }
 
 void set_busy_status(void *frontend, int status)
@@ -121,7 +121,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
             return 0;
 	}
 	REprintf(wrongmsg, keytype, fingerprint);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
     if (ret == 1) {		       /* key was absent */
 	if (console_batch_mode) {
@@ -130,7 +130,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
             return 0;
 	}
 	REprintf(absentmsg, keytype, fingerprint);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
@@ -182,7 +182,7 @@ int askalg(void *frontend, const char *algtype, const char *algname,
     }
 
     REprintf(msg, algtype, algname);
-    fflush(stderr);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
     GetConsoleMode(hin, &savemode);
@@ -226,11 +226,11 @@ int askappend(void *frontend, Filename *filename,
 
     if (console_batch_mode) {
 	REprintf(msgtemplate_batch, FILENAME_MAX, filename->path);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
 	return 0;
     }
     REprintf(msgtemplate, FILENAME_MAX, filename->path);
-    fflush(stderr);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     hin = GetStdHandle(STD_INPUT_HANDLE);
     GetConsoleMode(hin, &savemode);

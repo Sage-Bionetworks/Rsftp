@@ -517,7 +517,7 @@ static int ssh_sftp_do_select(int include_stdin, int no_fds_ok)
 
     if (ret < 0) {
 	perror("select");
-	exit(1);
+	{REprintf("PuTTY terminates here, with code 1.\n");return;}
     }
 
     for (i = 0; i < fdcount; i++) {
@@ -556,8 +556,8 @@ char *ssh_sftp_get_cmdline(char *prompt, int no_fds_ok)
     char *buf;
     int buflen, bufsize, ret;
 
-    fputs(prompt, stdout);
-    fflush(stdout);
+    Rprintf(prompt);
+    /*fflush(stdout);*/
 
     buf = NULL;
     buflen = bufsize = 0;
@@ -565,7 +565,7 @@ char *ssh_sftp_get_cmdline(char *prompt, int no_fds_ok)
     while (1) {
 	ret = ssh_sftp_do_select(TRUE, no_fds_ok);
 	if (ret < 0) {
-	    printf("connection died\n");
+	    Rprintf("connection died\n");
             sfree(buf);
 	    return NULL;	       /* woop woop */
 	}

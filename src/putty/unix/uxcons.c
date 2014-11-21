@@ -56,7 +56,7 @@ void cleanup_exit(int code)
      */
     sk_cleanup();
     random_save_seed();
-    exit(code);
+    {REprintf("PuTTY terminates here.\n");return;}
 }
 
 void set_busy_status(void *frontend, int status)
@@ -146,7 +146,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
 	    return 0;
 	}
 	REprintf(wrongmsg, keytype, fingerprint);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
     if (ret == 1) {		       /* key was absent */
 	if (console_batch_mode) {
@@ -155,7 +155,7 @@ int verify_ssh_host_key(void *frontend, char *host, int port, char *keytype,
 	    return 0;
 	}
 	REprintf(absentmsg, keytype, fingerprint);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
     }
 
     {
@@ -209,7 +209,7 @@ int askalg(void *frontend, const char *algtype, const char *algname,
     }
 
     REprintf(msg, algtype, algname);
-    fflush(stderr);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     {
 	struct termios oldmode, newmode;
@@ -259,11 +259,11 @@ int askappend(void *frontend, Filename *filename,
     premsg(&cf);
     if (console_batch_mode) {
 	REprintf(msgtemplate_batch, FILENAME_MAX, filename->path);
-	fflush(stderr);
+	/*fflush(stderr);* Not allowed in an R package*/
 	return 0;
     }
     REprintf(msgtemplate, FILENAME_MAX, filename->path);
-    fflush(stderr);
+    /*fflush(stderr);* Not allowed in an R package*/
 
     {
 	struct termios oldmode, newmode;
@@ -311,7 +311,7 @@ void old_keyfile_warning(void)
 
     struct termios cf;
     premsg(&cf);
-    fputs(message, stderr);
+    REprintf(message);
     postmsg(&cf);
 }
 
@@ -347,12 +347,12 @@ static void console_open(FILE **outfp, int *infd)
         *outfp = fdopen(*infd, "w");
     } else {
         *infd = 0;
-        *outfp = stderr;
+        /**outfp = stderr; Not allowed in an R pacakge*/
     }
 }
 static void console_close(FILE *outfp, int infd)
 {
-    if (outfp != stderr)
+    /*if (outfp != stderr)*/
         fclose(outfp);             /* will automatically close infd too */
 }
 
