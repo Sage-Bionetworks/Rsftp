@@ -17,7 +17,8 @@ runOnce<-function(sftpHost, sftpUserName, sftpPassword) {
   filePath<- tempfile()
   connection<-file(filePath)
   # add some randomness to the content, to make sure we are only dealing with our own file
-  writeChar(sprintf("this is a test %s",sample(100000, 1)), connection, eos=NULL)
+  numberOfNumbersToConcatenate<-10000
+  writeChar(sprintf("this is a test %s",paste(sample(100000, numberOfNumbersToConcatenate), collapse="_")), connection, eos=NULL)
   close(connection)
   originalMD5<-tools::md5sum(filePath)
   

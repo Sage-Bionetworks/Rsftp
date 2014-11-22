@@ -48,7 +48,8 @@ sftpDeleteFile
 }
 \examples{
 \dontrun{
-sftpDownload("sftp.server.org", "username", "password", "/path/to/source/remotefile.txt", "/dest/location/localfile.txt")
+sftpDownload("sftp.server.org", "username", "password", 
+"/path/to/source/remotefile.txt", "/dest/location/localfile.txt")
 }
 }
 
