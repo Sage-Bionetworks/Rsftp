@@ -6,6 +6,7 @@
  */
 
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 /* ----------------------------------------------------------------------
  * Core SHA algorithm: processes 16-word blocks into a message digest.

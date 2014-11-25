@@ -3,18 +3,18 @@
 \alias{Rssh}
 \docType{package}
 \title{
-Remote server access via sftp.
+Rssh: Tools for Communicating via the Secure Shell Network Protocol
 }
 \description{
-This package provides sftp access to remote servers.  Version 1.0 has just six commands, for uploading, downloading and 
-deleting files, and for creating, checking and deleting directories.  The package wraps the source code for PuTTY.  As
+This package provides secure-shell (ssh) access to remote servers.  Version 1.0 has just six commands, for uploading, downloading and 
+deleting files, and for creating, checking and deleting directories, all via SFTP.  The package wraps the source code for PuTTY.  As
 such it could be extended to provide additional ssh features.
 }
 \details{
 \tabular{ll}{
 Package: \tab Rssh\cr
 Type: \tab Package\cr
-Version: \tab 1.0-2\cr
+Version: \tab 1.0-3\cr
 Date: \tab 2014-12-1\cr
 License: \tab  GPL\cr
 }

@@ -14,6 +14,7 @@
 #include "misc.h"
 #include "tree234.h"
 #include "puttymem.h"
+#include "R_ext/Print.h"
 
 int agent_exists(void)
 {
@@ -119,7 +120,7 @@ int agent_query(void *in, int inlen, void **out, int *outlen,
     sock = socket(PF_UNIX, SOCK_STREAM, 0);
     if (sock < 0) {
 	perror("socket(PF_UNIX)");
-	{REprintf("PuTTY terminates here, with code 1.\n");return;}
+	{REprintf("PuTTY terminates here, with code 1.\n");return(1);}
     }
 
     cloexec(sock);

@@ -1,4 +1,4 @@
-PKG_CFLAGS=-D_FILE_OFFSET_BITS=64
+PKG_CFLAGS=-D_FILE_OFFSET_BITS=64 -Wall -pedantic
 PKG_CPPFLAGS=-Iputty/ -Iputty/charset/ -Iputty/windows/ -Iputty/unix/ -Iputty/macosx/
 
 SOURCES = $(wildcard *.c putty/*.c putty/unix/*.c)

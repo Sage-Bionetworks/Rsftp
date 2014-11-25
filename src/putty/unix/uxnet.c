@@ -21,6 +21,7 @@
 #include "putty.h"
 #include "network.h"
 #include "tree234.h"
+#include "R_ext/Print.h"
 
 /* Solaris needs <sys/sockio.h> for SIOCATMARK. */
 #ifndef SIOCATMARK
@@ -689,7 +690,7 @@ static int try_connect(Actual_Socket sock)
 
       default:
 	assert(0 && "unknown address family");
-	{REprintf("PuTTY terminates here, with code 1.\n");return;} /* XXX: GCC doesn't understand assert() on some systems. */
+	{REprintf("PuTTY terminates here, with code 1.\n");return(1);} /* XXX: GCC doesn't understand assert() on some systems. */
     }
 
     nonblock(s);

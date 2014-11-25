@@ -60,19 +60,13 @@ static int compare_timers(void *av, void *bv)
      * Failing that, compare on the other two fields, just so that
      * we don't get unwanted equality.
      */
-#if defined(__LCC__) || defined(__clang__)
     /* lcc won't let us compare function pointers. Legal, but annoying. */
     {
 	int c = memcmp(&a->fn, &b->fn, sizeof(a->fn));
 	if (c)
 	    return c;
     }
-#else    
-    if (a->fn < b->fn)
-	return -1;
-    else if (a->fn > b->fn)
-	return +1;
-#endif
+
 
     if (a->ctx < b->ctx)
 	return -1;

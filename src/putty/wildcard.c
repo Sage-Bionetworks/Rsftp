@@ -11,6 +11,7 @@
 #include <string.h>
 
 #include "putty.h"
+#include "R_ext/Print.h"
 
 /*
  * Definition of wildcard syntax:

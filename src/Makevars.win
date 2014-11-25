@@ -1,4 +1,4 @@
-PKG_CFLAGS=-DSECURITY_WIN32 -D_WIN32_IE=0x0500 -DWINVER=0x0500 -D_WIN32_WINDOWS=0x0410 -D_WIN32_WINNT=0x0500 -D_WINDOWS
+PKG_CFLAGS=-DSECURITY_WIN32 -D_WIN32_IE=0x0500 -DWINVER=0x0500 -D_WIN32_WINDOWS=0x0410 -D_WIN32_WINNT=0x0500 -D_WINDOWS  -Wall -pedantic
 PKG_CPPFLAGS=-Iputty/ -Iputty/charset/ -Iputty/windows/ -Iputty/unix/ -Iputty/macosx/
 
 SOURCES = $(wildcard *.c putty/*.c  putty/windows/*.c)

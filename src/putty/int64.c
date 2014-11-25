@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "int64.h"
+#include "R_ext/Print.h"
 
 uint64 uint64_div10(uint64 x, int *remainder)
 {
