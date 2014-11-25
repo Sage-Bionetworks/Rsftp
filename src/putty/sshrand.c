@@ -4,6 +4,7 @@
 
 #include "putty.h"
 #include "ssh.h"
+#include "R_ext/Print.h"
 #include <assert.h>
 
 /* Collect environmental noise every 5 minutes */

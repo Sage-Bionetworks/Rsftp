@@ -70,6 +70,7 @@
 #include <stdlib.h>
 
 #include "ssh.h"
+#include "R_ext/Print.h"
 
 /* ----------------------------------------------------------------------
  * Multi-function module. Can be compiled three ways.

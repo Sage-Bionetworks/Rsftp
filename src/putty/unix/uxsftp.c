@@ -517,7 +517,7 @@ static int ssh_sftp_do_select(int include_stdin, int no_fds_ok)
 
     if (ret < 0) {
 	perror("select");
-	{REprintf("PuTTY terminates here, with code 1.\n");return;}
+	{REprintf("PuTTY terminates here, with code 1.\n");return(ret);}
     }
 
     for (i = 0; i < fdcount; i++) {

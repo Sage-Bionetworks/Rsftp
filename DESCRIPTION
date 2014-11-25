@@ -1,9 +1,23 @@
 Package: Rssh
 Type: Package
-Title: Rssh
-Version: 1.0-2
+Title: Rssh: Tools for Communicating via the Secure Shell Network Protocol
+Version: 1.0-3
 Date: 2014-12-1
-Author: Bruce Hoff <bruce.hoff@sagebase.org>
-Maintainer: Bruce Hoff <bruce.hoff@sagebase.org>
-Description: A package for sftp file transfer.
-License:GPL
+Authors@R: c(person(given="Simon", family="Tatham", role=c("ctb", "cph"), comment="http://www.chiark.greenend.org.uk/~sgtatham/putty/"),
+			person(given="Robert", family="de Bath", role=c("ctb", "cph")),
+			person(given="Joris", family="van Rantwijk", role=c("ctb", "cph")),
+			person(given="Delian", family="Delchev", role=c("ctb", "cph")),
+			person(given="Andreas", family="Schultz", role=c("ctb", "cph")),
+			person(given="Jeroen", family="Massar", role=c("ctb", "cph")),
+			person(given="Wez", family="Furlong", role=c("ctb", "cph")),
+			person(given="Nicolas", family="Barry", role=c("ctb", "cph")),
+			person(given="Justin", family="Bradford", role=c("ctb", "cph")),
+			person(given="Ben", family="Harris", role=c("ctb", "cph")),
+			person(given="Malcolm", family="Smith", role=c("ctb", "cph")),
+			person(given="Ahmad", family="Khalifa", role=c("ctb", "cph")),
+			person(given="Markus", family="Kuhn", role=c("ctb", "cph")),
+			person(given="Colin", family="Watson", role=c("ctb", "cph")),
+			person(family="CORE SDI S.A.", role=c("ctb", "cph")),
+			person(given="Bruce", family="Hoff", email="bruce.hoff@sagebase.org", role=c("aut", "cre")))
+Description: This package provides secure-shell (ssh) access to remote servers.  Version 1.0 has just six commands, for uploading, downloading and deleting files, and for creating, checking and deleting directories, all via SFTP.  The package wraps the source code for PuTTY.  As such it could be extended to provide additional ssh features.
+License: GPLv3

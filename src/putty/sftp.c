@@ -12,6 +12,7 @@
 #include "int64.h"
 #include "tree234.h"
 #include "sftp.h"
+#include "R_ext/Print.h"
 
 struct sftp_packet {
     char *data;

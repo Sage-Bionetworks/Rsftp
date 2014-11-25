@@ -14,6 +14,7 @@
 #include "putty.h"
 #include "network.h"
 #include "proxy.h"
+#include "R_ext/Print.h"
 
 typedef struct Socket_localproxy_tag * Local_Proxy_Socket;
 
@@ -310,7 +311,11 @@ Socket platform_new_connection(SockAddr addr, char *hostname,
 	noncloexec(0);
 	noncloexec(1);
 	execl("/bin/sh", "sh", "-c", cmd, (void *)NULL);
-	{REprintf("PuTTY terminates here, with code 255.\n");return(255);}
+	{
+		REprintf("PuTTY terminates here, with code 255.\n");
+		ret->error = "TERMINAL ERROR";
+		return((Socket)ret);
+	}
     }
 
     sfree(cmd);

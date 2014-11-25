@@ -8,6 +8,7 @@
 
 #include "ssh.h"
 #include "misc.h"
+#include "R_ext/Print.h"
 
 static void sha_mpint(SHA_State * s, Bignum b)
 {
