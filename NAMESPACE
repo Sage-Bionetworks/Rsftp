@@ -1,4 +1,4 @@
-exportPattern("rsftp[[:alpha:]]+")
+exportPattern("sftp[[:alpha:]]+")
 
 ## package has a dynamic library
 useDynLib(RSFTP)
