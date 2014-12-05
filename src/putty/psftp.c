@@ -3006,7 +3006,7 @@ int psftp_main(int argc, char *argv[])
     return 0;
 }
 
-int rssh_sftp_init(char *host, char *user) {
+int rsftp_sftp_init(char *host, char *user) {
 	int ret;
 	console_batch_mode = 1; /* suppress prompts */
 	sk_init();
@@ -3028,7 +3028,7 @@ int rssh_sftp_init(char *host, char *user) {
 	return 0;
 }
 
-void rssh_clean_up() {
+void rsftp_clean_up() {
 	if (back != NULL && back->connected(backhandle)) {
 		char ch;
 		back->special(backhandle, TS_EOF);
@@ -3043,9 +3043,9 @@ void rssh_clean_up() {
 	sk_cleanup();
 }
 
-int rssh_sftp_download(char *host, char *user, char *sftppath, char *localpath) {
+int rsftp_sftp_download(char *host, char *user, char *sftppath, char *localpath) {
 	int ret;
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
@@ -3055,14 +3055,14 @@ int rssh_sftp_download(char *host, char *user, char *sftppath, char *localpath) 
 		return 1;
 	}
 
-	rssh_clean_up();
+	rsftp_clean_up();
 
 	return 0;
 }
 
-int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
+int rsftp_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
 	int ret;
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
@@ -3072,15 +3072,15 @@ int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath) {
 		return 1;
 	}
 
-	rssh_clean_up();
+	rsftp_clean_up();
 
 	return 0;
 }
 
-int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
+int rsftp_sftp_mkdir(char *host, char *user, char *sftppath) {
 	int ret;
 	char *cmd_words[2];
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
@@ -3094,15 +3094,15 @@ int rssh_sftp_mkdir(char *host, char *user, char *sftppath) {
 		return 1;
 	}
 
-	rssh_clean_up();
+	rsftp_clean_up();
 
 	return 0;
 }
 
-int rssh_sftp_rm(char *host, char *user, char *sftppath) {
+int rsftp_sftp_rm(char *host, char *user, char *sftppath) {
 	int ret;
 	char *cmd_words[2];
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
@@ -3116,15 +3116,15 @@ int rssh_sftp_rm(char *host, char *user, char *sftppath) {
 		return 1;
 	}
 
-	rssh_clean_up();
+	rsftp_clean_up();
 
 	return 0;
 }
 
-int rssh_sftp_rmdir(char *host, char *user, char *sftppath) {
+int rsftp_sftp_rmdir(char *host, char *user, char *sftppath) {
 	int ret;
 	char *cmd_words[2];
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return ret;
 
 	/* This function returns 1 for success, 0 for failure*/
@@ -3138,19 +3138,19 @@ int rssh_sftp_rmdir(char *host, char *user, char *sftppath) {
 		return 1;
 	}
 
-	rssh_clean_up();
+	rsftp_clean_up();
 
 	return 0;
 }
 
-int rssh_sftp_isdir(char *host, char *user, char *sftppath) {
+int rsftp_sftp_isdir(char *host, char *user, char *sftppath) {
 	int ret;
 	int result;
-	ret = rssh_sftp_init(host, user);
+	ret = rsftp_sftp_init(host, user);
 	if (ret!=0) return 0;
 
 	result = check_is_dir(sftppath);
-	rssh_clean_up();
+	rsftp_clean_up();
 	return result;
 }
 

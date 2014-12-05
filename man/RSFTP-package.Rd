@@ -1,9 +1,9 @@
-\name{Rssh-package}
-\alias{Rssh-package}
-\alias{Rssh}
+\name{RSFTP-package}
+\alias{RSFTP-package}
+\alias{RSFTP}
 \docType{package}
 \title{
-Rssh: Tools for Communicating via the Secure Shell Network Protocol
+Tools for Communicating via SSH File Transfer Protocol (SFTP)
 }
 \description{
 This package provides secure-shell (ssh) access to remote servers.  Version 1.0 has just six commands, for uploading, downloading and 
@@ -12,11 +12,11 @@ such it could be extended to provide additional ssh features.
 }
 \details{
 \tabular{ll}{
-Package: \tab Rssh\cr
+Package: \tab RSFTP\cr
 Type: \tab Package\cr
-Version: \tab 1.0-3\cr
-Date: \tab 2014-12-1\cr
-License: \tab  GPL\cr
+Version: \tab 1.0-0\cr
+Date: \tab 2014-12-12\cr
+License: \tab  GPL-3\cr
 }
 This library is a wrapper around PuTTY, using its source code according to the license terms specified here: http://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html
 

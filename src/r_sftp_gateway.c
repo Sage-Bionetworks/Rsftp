@@ -1,10 +1,10 @@
 
-int rssh_sftp_download(char *host, char *user, char *sftppath, char *localpath);
-int rssh_sftp_upload(char *host, char *user, char *sftppath, char *localpath);
-int rssh_sftp_mkdir(char *host, char *user, char *sftppath);
-int rssh_sftp_rm(char *host, char *user, char *sftppath);
-int rssh_sftp_rmdir(char *host, char *user, char *sftppath);
-int rssh_sftp_isdir(char *host, char *user, char *sftppath);
+int rsftp_sftp_download(char *host, char *user, char *sftppath, char *localpath);
+int rsftp_sftp_upload(char *host, char *user, char *sftppath, char *localpath);
+int rsftp_sftp_mkdir(char *host, char *user, char *sftppath);
+int rsftp_sftp_rm(char *host, char *user, char *sftppath);
+int rsftp_sftp_rmdir(char *host, char *user, char *sftppath);
+int rsftp_sftp_isdir(char *host, char *user, char *sftppath);
 void set_user_password(char *pass);
 void init();
 
@@ -20,7 +20,7 @@ void sftp_download(char **hostname_arg, char **username_arg, char **password_arg
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_download(*hostname_arg, *username_arg, *sftppath_arg,*localpath_arg);
+	*result = rsftp_sftp_download(*hostname_arg, *username_arg, *sftppath_arg,*localpath_arg);
 }
 
 void sftp_upload(char **hostname_arg, char **username_arg, char **password_arg, char **sftppath_arg, char **localpath_arg, int *result)
@@ -30,7 +30,7 @@ void sftp_upload(char **hostname_arg, char **username_arg, char **password_arg, 
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_upload(*hostname_arg, *username_arg, *sftppath_arg,*localpath_arg);
+	*result = rsftp_sftp_upload(*hostname_arg, *username_arg, *sftppath_arg,*localpath_arg);
 }
 
 void sftp_mkdir(char **hostname_arg, char **username_arg, char **password_arg, char **sftppath_arg, int *result) {
@@ -39,7 +39,7 @@ void sftp_mkdir(char **hostname_arg, char **username_arg, char **password_arg, c
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_mkdir(*hostname_arg, *username_arg, *sftppath_arg);
+	*result = rsftp_sftp_mkdir(*hostname_arg, *username_arg, *sftppath_arg);
 }
 
 void sftp_rm(char **hostname_arg, char **username_arg, char **password_arg, char **sftppath_arg, int *result) {
@@ -48,7 +48,7 @@ void sftp_rm(char **hostname_arg, char **username_arg, char **password_arg, char
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_rm(*hostname_arg, *username_arg, *sftppath_arg);
+	*result = rsftp_sftp_rm(*hostname_arg, *username_arg, *sftppath_arg);
 }
 
 void sftp_rmdir(char **hostname_arg, char **username_arg, char **password_arg, char **sftppath_arg, int *result) {
@@ -57,7 +57,7 @@ void sftp_rmdir(char **hostname_arg, char **username_arg, char **password_arg, c
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_rmdir(*hostname_arg, *username_arg, *sftppath_arg);
+	*result = rsftp_sftp_rmdir(*hostname_arg, *username_arg, *sftppath_arg);
 }
 
 void sftp_isdir(char **hostname_arg, char **username_arg, char **password_arg, char **sftppath_arg, int *result) {
@@ -66,6 +66,6 @@ void sftp_isdir(char **hostname_arg, char **username_arg, char **password_arg, c
 		sftp_initialized = 1;
 	}
 	set_user_password(*password_arg);
-	*result = rssh_sftp_isdir(*hostname_arg, *username_arg, *sftppath_arg);
+	*result = rsftp_sftp_isdir(*hostname_arg, *username_arg, *sftppath_arg);
 }
 

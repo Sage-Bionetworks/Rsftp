@@ -1192,8 +1192,7 @@ static int alloc_channel_id(Ssh ssh)
      * largest ID in the initial sequence.
      */
     {
-	unsigned i = low + 1 + CHANNEL_NUMBER_OFFSET;
-	assert(NULL == find234(ssh->channels, &i, ssh_channelfind));
+	if (NULL == find234(ssh->channels, &i, ssh_channelfind)) return NULL;
     }
     return low + 1 + CHANNEL_NUMBER_OFFSET;
 }
