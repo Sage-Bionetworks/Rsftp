@@ -321,7 +321,7 @@ static struct sftp_request *sftp_alloc_request(void)
      */
     {
 	unsigned i = low + 1 + REQUEST_ID_OFFSET;
-	assert(NULL == find234(sftp_requests, &i, sftp_reqfind));
+	if (NULL != find234(sftp_requests, &i, sftp_reqfind)) return NULL;
     }
 
     /*

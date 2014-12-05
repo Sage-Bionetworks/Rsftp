@@ -1193,7 +1193,7 @@ static int alloc_channel_id(Ssh ssh)
      */
     {
 	unsigned i = low + 1 + CHANNEL_NUMBER_OFFSET;
-	assert(NULL == find234(ssh->channels, &i, ssh_channelfind));
+	if (NULL != find234(ssh->channels, &i, ssh_channelfind)) return(0);
     }
     return low + 1 + CHANNEL_NUMBER_OFFSET;
 }
