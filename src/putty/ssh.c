@@ -4447,7 +4447,7 @@ static void ssh_rportfwd_succfail(Ssh ssh, struct Packet *pktin, void *ctx)
 		  pf->sportdesc);
 
 	rpf = del234(ssh->rportfwds, pf);
-	assert(rpf == pf);
+	if (rpf != pf) return;
 	pf->pfrec->remote = NULL;
 	free_rportfwd(pf);
     }

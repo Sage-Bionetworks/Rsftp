@@ -472,7 +472,7 @@ char *winsock_error_string(int error)
                            es->text + bufused, bufsize - bufused, NULL)) {
             sprintf(es->text + bufused,
                     "Windows error code %d (and FormatMessage returned %d)", 
-                    error, GetLastError());
+                    error, (int)GetLastError());
         } else {
             int len = strlen(es->text);
             if (len > 0 && es->text[len-1] == '\n')

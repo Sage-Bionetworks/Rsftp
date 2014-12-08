@@ -311,6 +311,9 @@ int console_get_userpass_input(prompts_t *p, unsigned char *in, int inlen)
     HANDLE hin, hout;
     size_t curr_prompt;
 
+    hin = NULL;
+    hout = NULL;
+
     /*
      * Zero all the results, in case we abort half-way through.
      */

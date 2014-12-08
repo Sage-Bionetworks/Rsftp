@@ -114,7 +114,7 @@ static void *sk_localproxy_get_private_ptr(Socket s)
 
 static void sk_localproxy_set_frozen(Socket s, int is_frozen)
 {
-    Local_Proxy_Socket ps = (Local_Proxy_Socket) s;
+    //Local_Proxy_Socket ps = (Local_Proxy_Socket) s;
 
     /*
      * FIXME

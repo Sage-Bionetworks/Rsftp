@@ -222,7 +222,7 @@ int seek_file(WFile *f, uint64 offset, int whence)
 	return -1;
     }
 
-    SetFilePointer(f->h, offset.lo, &(offset.hi), movemethod);
+    SetFilePointer(f->h, offset.lo, (PLONG)(&(offset.hi)), movemethod);
     
     if (GetLastError() != NO_ERROR)
 	return -1;
