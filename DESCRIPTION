@@ -1,4 +1,4 @@
-Package: RSFTP
+Package: Rsftp
 Type: Package
 Title: Tools for Communicating via SSH File Transfer Protocol (SFTP)
 Version: 1.0-0

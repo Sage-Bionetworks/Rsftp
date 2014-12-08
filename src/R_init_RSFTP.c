@@ -16,13 +16,13 @@ static const R_CallMethodDef callMethods[] = {
 };
 
 void
-R_init_RSFTP(DllInfo *info)
+R_init_Rsftp(DllInfo *info)
 {
     R_registerRoutines(info, NULL, callMethods, NULL, NULL);
 }
 
 void
-R_unload_RSFTP(DllInfo *info)
+R_unload_Rsftp(DllInfo *info)
 {
     /* any clean-up when package unloaded */
 }

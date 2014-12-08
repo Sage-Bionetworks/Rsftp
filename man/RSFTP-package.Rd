@@ -1,6 +1,6 @@
-\name{RSFTP-package}
-\alias{RSFTP-package}
-\alias{RSFTP}
+\name{Rsftp-package}
+\alias{Rsftp-package}
+\alias{Rsftp}
 \docType{package}
 \title{
 Tools for Communicating via SSH File Transfer Protocol (SFTP)
@@ -12,7 +12,7 @@ such it could be extended to provide additional ssh features.
 }
 \details{
 \tabular{ll}{
-Package: \tab RSFTP\cr
+Package: \tab Rsftp\cr
 Type: \tab Package\cr
 Version: \tab 1.0-0\cr
 Date: \tab 2014-12-12\cr
