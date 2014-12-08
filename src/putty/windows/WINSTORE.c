@@ -109,7 +109,7 @@ void *open_settings_w(const char *sessionname, char **errmsg)
 void write_setting_s(void *handle, const char *key, const char *value)
 {
     if (handle)
-	RegSetValueEx((HKEY) handle, key, 0, REG_SZ, (BYTE *)value,
+	RegSetValueEx((HKEY) handle, key, 0, REG_SZ, (LPBYTE)value,
 		      1 + strlen(value));
 }
 
@@ -657,7 +657,7 @@ static int transform_jumplist_registry
     value_length = 200;
     old_value = snewn(value_length, char);
     ret = RegQueryValueEx(pjumplist_key, reg_jumplist_value, NULL, &type,
-    		(LPBYTE)old_value, &value_length);
+    		(LPBYTE)old_value, (DWORD*)&value_length);
     /* When the passed buffer is too small, ERROR_MORE_DATA is
      * returned and the required size is returned in the length
      * argument. */
@@ -665,7 +665,7 @@ static int transform_jumplist_registry
         sfree(old_value);
         old_value = snewn(value_length, char);
         ret = RegQueryValueEx(pjumplist_key, reg_jumplist_value, NULL, &type,
-        		(LPBYTE)old_value, &value_length);
+        		(LPBYTE)old_value, (DWORD*)&value_length);
     }
 
     if (ret == ERROR_FILE_NOT_FOUND) {

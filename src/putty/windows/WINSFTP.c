@@ -235,7 +235,7 @@ uint64 get_file_posn(WFile *f)
     uint64 ret;
 
     ret.hi = 0L;
-    ret.lo = SetFilePointer(f->h, 0L, &(ret.hi), FILE_CURRENT);
+    ret.lo = SetFilePointer(f->h, 0L, (PLONG)(&(ret.hi)), FILE_CURRENT);
 
     return ret;
 }

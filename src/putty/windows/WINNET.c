@@ -17,8 +17,8 @@
 #include <ws2tcpip.h>
 
 #ifndef NO_IPV6
-const struct in6_addr in6addr_any = IN6ADDR_ANY_INIT;
-const struct in6_addr in6addr_loopback = IN6ADDR_LOOPBACK_INIT;
+const struct in6_addr in6addr_any = {IN6ADDR_ANY_INIT};
+const struct in6_addr in6addr_loopback = {IN6ADDR_LOOPBACK_INIT};
 #endif
 
 #define ipv4_is_loopback(addr) \
@@ -137,7 +137,7 @@ static int cmpfortree(void *av, void *bv)
 static int cmpforsearch(void *av, void *bv)
 {
     Actual_Socket b = (Actual_Socket) bv;
-    unsigned long as = (unsigned long) av, bs = (unsigned long) b->s;
+    unsigned as = (unsigned) av, bs = (unsigned) b->s;
     if (as < bs)
 	return -1;
     if (as > bs)

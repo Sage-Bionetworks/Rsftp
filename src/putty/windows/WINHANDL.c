@@ -266,6 +266,7 @@ static DWORD WINAPI handle_output_threadfunc(void *param)
     HANDLE oev;
     int writeret;
 
+    oev = NULL;
     if (ctx->flags & HANDLE_FLAG_OVERLAPPED) {
 	povl = &ovl;
 	oev = CreateEvent(NULL, TRUE, FALSE, NULL);
@@ -349,9 +350,9 @@ static int handle_cmp_evtomain(void *av, void *bv)
     struct handle *a = (struct handle *)av;
     struct handle *b = (struct handle *)bv;
 
-    if ((unsigned)a->u.g.ev_to_main < (unsigned)b->u.g.ev_to_main)
+    if ((unsigned long)a->u.g.ev_to_main < (unsigned long)b->u.g.ev_to_main)
 	return -1;
-    else if ((unsigned)a->u.g.ev_to_main > (unsigned)b->u.g.ev_to_main)
+    else if ((unsigned long)a->u.g.ev_to_main > (unsigned long)b->u.g.ev_to_main)
 	return +1;
     else
 	return 0;
@@ -362,9 +363,9 @@ static int handle_find_evtomain(void *av, void *bv)
     HANDLE *a = (HANDLE *)av;
     struct handle *b = (struct handle *)bv;
 
-    if ((unsigned)*a < (unsigned)b->u.g.ev_to_main)
+    if ((unsigned long)*a < (unsigned long)b->u.g.ev_to_main)
 	return -1;
-    else if ((unsigned)*a > (unsigned)b->u.g.ev_to_main)
+    else if ((unsigned long)*a > (unsigned long)b->u.g.ev_to_main)
 	return +1;
     else
 	return 0;
