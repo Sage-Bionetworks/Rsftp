@@ -2,7 +2,7 @@ Package: Rsftp
 Type: Package
 Title: Tools for Communicating via SSH File Transfer Protocol (SFTP)
 Version: 1.0-0
-Date: 2014-12-12
+Date: 2014-12-08
 Authors@R: c(person(given="Simon", family="Tatham", role=c("ctb", "cph"), comment="http://www.chiark.greenend.org.uk/~sgtatham/putty/"),
 			person(given="Robert", family="de Bath", role=c("ctb", "cph")),
 			person(given="Joris", family="van Rantwijk", role=c("ctb", "cph")),

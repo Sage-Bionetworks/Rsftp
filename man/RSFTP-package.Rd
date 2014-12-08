@@ -15,7 +15,7 @@ such it could be extended to provide additional ssh features.
 Package: \tab Rsftp\cr
 Type: \tab Package\cr
 Version: \tab 1.0-0\cr
-Date: \tab 2014-12-12\cr
+Date: \tab 2014-12-08\cr
 License: \tab  GPL-3\cr
 }
 This library is a wrapper around PuTTY, using its source code according to the license terms specified here: http://www.chiark.greenend.org.uk/~sgtatham/putty/licence.html
