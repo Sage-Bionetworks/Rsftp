@@ -18,8 +18,8 @@
 #include <ws2tcpip.h>
 
 #ifndef NO_IPV6
-const struct in6_addr in6addr_any = {IN6ADDR_ANY_INIT};
-const struct in6_addr in6addr_loopback = {IN6ADDR_LOOPBACK_INIT};
+const struct in6_addr in6addr_any = {{IN6ADDR_ANY_INIT}};
+const struct in6_addr in6addr_loopback = {{IN6ADDR_LOOPBACK_INIT}};
 #endif
 
 #define ipv4_is_loopback(addr) \
