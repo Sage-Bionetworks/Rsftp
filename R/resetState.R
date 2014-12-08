@@ -6,7 +6,7 @@
 ###############################################################################
 
 resetState<-function() {
-  packageName<-"RSFTP"
+  packageName<-"Rsftp"
   library.dynam.unload(chname=packageName, libpath=system.file(package = packageName), verbose=FALSE)
   library.dynam(chname=packageName, package=packageName, lib.loc=.libPaths(), verbose=FALSE)
 }

@@ -1034,10 +1034,10 @@ void ssh_rsakex_encrypt(const struct ssh_hash *h, unsigned char *in, int inlen,
     k = (7 + bignum_bitcount(rsa->modulus)) / 8;
 
     /* The length of the input data must be at most k - 2hLen - 2. */
-    assert(inlen > 0 && inlen <= k - 2*HLEN - 2);
+    if (!(inlen > 0 && inlen <= k - 2*HLEN - 2)) return;
 
     /* The length of the output data wants to be precisely k. */
-    assert(outlen == k);
+    if (outlen != k) return;
 
     /*
      * Now perform EME-OAEP encoding. First set up all the unmasked

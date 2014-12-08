@@ -229,7 +229,7 @@ const char *win_strerror(int error)
                            es->text, bufsize, NULL)) {
             sprintf(es->text,
                     "Windows error code %d (and FormatMessage returned %d)", 
-                    error, GetLastError());
+                    error, (int)GetLastError());
         } else {
             int len = strlen(es->text);
             if (len > 0 && es->text[len-1] == '\n')

@@ -13,7 +13,7 @@ sftpDownload<-function(host, username, password, remotepath, localpath) {
     as.character(remotepath), 
     as.character(localpath), 
     as.integer(0),
-    PACKAGE="RSFTP")
+    PACKAGE="Rsftp")
   if (result[[6]]==0) return(TRUE) else return(FALSE)
 }
 

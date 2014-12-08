@@ -1,15 +1,15 @@
-# An integration test for the RSFTP library
+# An integration test for the Rsftp library
 # 
 # Author: brucehoff
 ###############################################################################
-library(RSFTP)
+library(Rsftp)
 library(tools)
 
 
 runIntegrationTest<-function(sftpHost, sftpUserName, sftpPassword) {
-  message("\n===============\nBeginning RSFTP integration test:\n===============\n")
+  message("\n===============\nBeginning Rsftp integration test:\n===============\n")
   runOnce(sftpHost, sftpUserName, sftpPassword)
-  message("\n===============\nRSFTP integration test completed successfully.\n===============\n")
+  message("\n===============\nRsftp integration test completed successfully.\n===============\n")
 }
 
 runOnce<-function(sftpHost, sftpUserName, sftpPassword) {
