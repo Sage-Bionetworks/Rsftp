@@ -137,7 +137,11 @@ static int cmpfortree(void *av, void *bv)
 static int cmpforsearch(void *av, void *bv)
 {
     Actual_Socket b = (Actual_Socket) bv;
+#ifdef _WIN64
+    unsigned long as = (unsigned long) av, bs = (unsigned long) b->s;
+#else
     unsigned as = (unsigned) av, bs = (unsigned) b->s;
+#endif
     if (as < bs)
 	return -1;
     if (as > bs)

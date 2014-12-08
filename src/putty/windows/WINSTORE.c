@@ -426,7 +426,7 @@ int verify_host_key(const char *hostname, int port,
 	     * wrong, and hyper-cautiously do nothing.
 	     */
 	    if (!strcmp(otherstr, key))
-		RegSetValueEx(rkey, regname, 0, REG_SZ, otherstr,
+		RegSetValueEx(rkey, regname, 0, REG_SZ, (LPBYTE)otherstr,
 			      strlen(otherstr) + 1);
 	}
 

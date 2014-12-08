@@ -349,13 +349,21 @@ static int handle_cmp_evtomain(void *av, void *bv)
 {
     struct handle *a = (struct handle *)av;
     struct handle *b = (struct handle *)bv;
-
+#ifdef _WIN64
     if ((unsigned long)a->u.g.ev_to_main < (unsigned long)b->u.g.ev_to_main)
 	return -1;
     else if ((unsigned long)a->u.g.ev_to_main > (unsigned long)b->u.g.ev_to_main)
 	return +1;
     else
 	return 0;
+#else
+    if ((unsigned)a->u.g.ev_to_main < (unsigned)b->u.g.ev_to_main)
+	return -1;
+    else if ((unsigned)a->u.g.ev_to_main > (unsigned)b->u.g.ev_to_main)
+	return +1;
+    else
+	return 0;
+#endif
 }
 
 static int handle_find_evtomain(void *av, void *bv)
